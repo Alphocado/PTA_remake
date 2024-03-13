@@ -9,13 +9,12 @@
   <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
 
   {{-- CSS Vanila --}}
+  <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
 
   <title>PTA | {{ $title }}</title>
 </head>
 <body>
-  <div class="container">
-    @yield('container')
-  </div>
+  @yield('container')
 
 <script src="{{ asset('bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
