@@ -27,3 +27,16 @@
     }
   }
 }
+
+.nav-bg {
+  background-color: #F4EEE0 !important;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, .45);
+}
+.btn-default{
+  background-color: rgba(57, 54, 70, .1);
+  color: black;
+}
+.btn-default:hover {
+  color: #f4eee0;
+  background-color: #393646;
+}
