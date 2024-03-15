@@ -22,10 +22,12 @@
 .sidebar .nav-link {
   font-size: .875rem;
   font-weight: 500;
+  color: black;
 }
 
-.sidebar .nav-link.active {
-  color: #2470dc;
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+  color: #f4eee0;
+  background-color: #393646;
 }
 
 .sidebar-heading {

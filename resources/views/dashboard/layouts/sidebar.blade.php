@@ -1,8 +1,8 @@
 
-<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary vh-100">
-  <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+<div class="sidebar border border-right col-md-3 col-lg-2 p-0 vh-100" style="background-color: rgba(57, 54, 70, .1);">
+  <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+      <h5 class="offcanvas-title" id="sidebarMenuLabel">{{ $title }}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
@@ -16,64 +16,67 @@
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-            Orders
+            Absensi 
           </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#cart"/></svg>
             Products
           </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#people"/></svg>
-            Customers
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="#">
-            <svg class="bi"><use xlink:href="#graph-up"/></svg>
-            Reports
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="#">
-            <svg class="bi"><use xlink:href="#puzzle"/></svg>
-            Integrations
+            Siswa
           </a>
         </li>
       </ul>
 
       <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-        <span>Saved reports</span>
-        <a class="link-secondary" href="#" aria-label="Add a new report">
-          <svg class="bi"><use xlink:href="#plus-circle"/></svg>
-        </a>
+        <span>moderator</span>
       </h6>
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-            Current month
+            Daftar Siswa
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-            Last quarter
+            Daftar Guru
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-            Social engagement
+            Daftar Kelas
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
             <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-            Year-end sale
+            Daftar Mapel
+          </a>
+        </li>
+      </ul>
+      
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+        <span>admin</span>
+      </h6>
+      <ul class="nav flex-column mb-auto">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+            Daftar User
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+            Daftar Menu
           </a>
         </li>
       </ul>
@@ -83,12 +86,6 @@
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="#">
-            <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
-            Settings
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-2" href="/logout">
             <svg class="bi"><use xlink:href="#door-closed"/></svg>
             Logout
           </a>
