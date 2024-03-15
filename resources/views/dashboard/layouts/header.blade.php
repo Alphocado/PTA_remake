@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.122.0">
-  <title>Dashboard Template · Bootstrap v5.3</title>
+  <title>PTA | {{ $title }}</title>
 
 
   <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
