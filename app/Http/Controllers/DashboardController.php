@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
   public function index()
   {
+    // url()->current();
     return view('dashboard/index', [
       'title' => 'Dashboard',
       'menus' => Menu::all(),
