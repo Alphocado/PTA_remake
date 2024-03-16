@@ -14,6 +14,14 @@ return new class extends Migration
     Schema::create('menu', function (Blueprint $table) {
       $table->id();
       $table->string('name');
+      $table->string('logo');
+      $table->integer('role');
+      $table->timestamps();
+    });
+
+    Schema::create('sub_menu', function (Blueprint $table) {
+      $table->id();
+      $table->string('name');
       $table->integer('role');
       $table->timestamps();
     });
