@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class CheckLogin
+class CheckRole1
 {
   /**
    * Handle an incoming request.
@@ -19,6 +19,10 @@ class CheckLogin
     // Check apakah sudah login atau belum
     if (!Auth::check()) {
       return redirect('/login'); // langsung pindah ke login
+    }
+
+    if (!(auth()->user()->role >= 1)) {
+      return abort(403, 'Unauthorized');
     }
 
     return $next($request);
