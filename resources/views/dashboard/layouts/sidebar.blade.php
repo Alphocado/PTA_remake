@@ -1,5 +1,4 @@
-
-<div class="sidebar border border-right col-md-3 col-lg-2 p-0 vh-100" style="background-color: rgba(57, 54, 70, .1);">
+<div class="sidebar border border-right col-md-3 col-lg-2 p-0" style="background-color: rgba(57, 54, 70, .1);">
   <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="sidebarMenuLabel">{{ $title }}</h5>
