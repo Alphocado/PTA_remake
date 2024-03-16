@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\SubMenu;
 
-class DashboardController extends Controller
+class KelasController extends Controller
 {
   public function index()
   {
-    return view('dashboard/index', [
-      'title' => 'Dashboard',
+    return view('dashboard/daftar-kelas/index', [
+      'title' => 'Siswa',
       'menus' => Menu::all(),
       'sub_menus' => SubMenu::all(),
     ]);
