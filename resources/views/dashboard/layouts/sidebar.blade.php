@@ -18,7 +18,7 @@
           @if($menu->role == $sub_menu->role && $sub_menu->role <= auth()->user()->role)
           <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('/'.$menu->slug) ? 'active' : '' }}" href="/{{ $menu->slug }}">
+              <a class="nav-link d-flex align-items-center gap-2 {{ Request::is($menu->slug) ? 'active' : '' }}" href="{{ $menu->slug }}">
                 <svg class="bi"><use xlink:href="#{{ $menu->logo }}"/></svg>
                   {{ $menu->name }}
               </a>

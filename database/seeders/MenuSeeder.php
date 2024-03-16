@@ -35,6 +35,13 @@ class MenuSeeder extends Seeder
     ]);
 
     Menu::create([
+      'name' => 'Kelas',
+      'logo' => 'people',
+      'role' => 1,
+      'slug' => 'kelas',
+    ]);
+
+    Menu::create([
       'name' => 'Daftar Siswa',
       'logo' => 'file-earmark-text',
       'role' => 2,
@@ -67,20 +74,6 @@ class MenuSeeder extends Seeder
       'logo' => 'file-earmark-text',
       'role' => 3,
       'slug' => 'daftar-user',
-    ]);
-
-    Menu::create([
-      'name' => 'Daftar Menu',
-      'logo' => 'file-earmark-text',
-      'role' => 3,
-      'slug' => 'daftar-menu',
-    ]);
-
-    Menu::create([
-      'name' => 'Daftar SubMenu',
-      'logo' => 'file-earmark-text',
-      'role' => 3,
-      'slug' => 'daftar-submenu',
     ]);
   }
 }
