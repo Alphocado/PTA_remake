@@ -23,13 +23,19 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('/', [DashboardController::class, 'index'])->middleware(CheckRole1::class);
-Route::get('/absensi', [AbsenController::class, 'index'])->middleware(CheckRole1::class);
-Route::get('/siswa', [SiswaReadController::class, 'index'])->middleware(CheckRole1::class);
+Route::middleware(['check-role1'])->group(function () {
+  Route::get('/', [DashboardController::class, 'index']);
+  Route::get('/absensi', [AbsenController::class, 'index']);
+  Route::get('/siswa', [SiswaReadController::class, 'index']);
+});
 
-Route::get('/daftar-siswa', [SiswaController::class, 'index'])->middleware(CheckRole2::class);
-Route::get('/daftar-guru', [GuruController::class, 'index'])->middleware(CheckRole2::class);
-Route::get('/daftar-kelas', [KelasController::class, 'index'])->middleware(CheckRole2::class);
-Route::get('/daftar-mapel', [MapelController::class, 'index'])->middleware(CheckRole2::class);
+Route::middleware(['check-role2'])->group(function () {
+  Route::get('/daftar-siswa', [SiswaController::class, 'index']);
+  Route::get('/daftar-guru', [GuruController::class, 'index']);
+  Route::get('/daftar-kelas', [KelasController::class, 'index']);
+  Route::get('/daftar-mapel', [MapelController::class, 'index']);
+});
 
-Route::get('/daftar-user', [UserController::class, 'index'])->middleware(CheckRole3::class);
+Route::middleware(['check-role3'])->group(function () {
+  Route::get('/daftar-user', [UserController::class, 'index']);
+});
