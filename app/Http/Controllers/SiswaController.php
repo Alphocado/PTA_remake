@@ -35,7 +35,17 @@ class SiswaController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $validateData = $request->validate([
+      'nama' => 'required|max:255',
+      'nis' => 'required|size:9',
+      'jenis_kelamin' => 'required',
+      'kelas' => 'required|not_in:kelas',
+      'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
+      'alamat' => 'required|max:255',
+      'tgl_lahir' => 'required|date'
+    ]);
+
+    return redirect('/daftar-siswa')->with('success', 'Data baru telah ditambahkan');
   }
 
   /**

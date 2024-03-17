@@ -25,7 +25,7 @@
                 <th scope="col text-cente">#</th>
                 <th scope="col">Nama</th>
                 <th scope="col">NIS</th>
-                <th scope="col">Gender</th>
+                <th scope="col">Jenis kelamin</th>
                 <th scope="col">Opsi</th>
               </tr>
             </thead>

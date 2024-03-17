@@ -39,6 +39,7 @@ return new class extends Migration
     Schema::create('siswa', function (Blueprint $table) {
       $table->id();
       $table->string('nama');
+      $table->string('nis')->unique();
       $table->unsignedBigInteger('kelas');
       $table->foreign('kelas')->references('id')->on('kelas')->onDelete('cascade');
       $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);

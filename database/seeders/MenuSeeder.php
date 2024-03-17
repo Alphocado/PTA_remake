@@ -35,13 +35,6 @@ class MenuSeeder extends Seeder
     ]);
 
     Menu::create([
-      'name' => 'Kelas',
-      'logo' => 'people',
-      'role' => 1,
-      'slug' => 'kelas',
-    ]);
-
-    Menu::create([
       'name' => 'Daftar Siswa',
       'logo' => 'file-earmark-text',
       'role' => 2,

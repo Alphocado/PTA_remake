@@ -30,8 +30,8 @@ Route::middleware(['check-role1'])->group(function () {
 });
 
 Route::middleware(['check-role2'])->group(function () {
-  Route::get('/daftar-siswa', [SiswaController::class, 'index']);
-  Route::get('/daftar-guru', [GuruController::class, 'index']);
+  Route::resource('/daftar-siswa', SiswaController::class);
+  Route::resource('/daftar-guru', GuruController::class);
   Route::get('/daftar-kelas', [KelasController::class, 'index']);
   Route::get('/daftar-mapel', [MapelController::class, 'index']);
 });
