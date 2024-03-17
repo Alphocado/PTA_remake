@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\SubMenu;
+use App\Models\Mapel;
+use App\Models\Guru;
 
 class GuruController extends Controller
 {
@@ -14,6 +16,7 @@ class GuruController extends Controller
       'title' => 'Siswa',
       'menus' => Menu::all(),
       'sub_menus' => SubMenu::all(),
+      'mapel' => Mapel::all()
     ]);
   }
 }

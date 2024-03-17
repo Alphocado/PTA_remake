@@ -32,10 +32,10 @@ Route::middleware(['check-role1'])->group(function () {
 Route::middleware(['check-role2'])->group(function () {
   Route::resource('/daftar-siswa', SiswaController::class);
   Route::resource('/daftar-guru', GuruController::class);
-  Route::get('/daftar-kelas', [KelasController::class, 'index']);
-  Route::get('/daftar-mapel', [MapelController::class, 'index']);
+  Route::resource('/daftar-kelas', KelasController::class);
+  Route::resource('/daftar-mapel', MapelController::class);
 });
 
 Route::middleware(['check-role3'])->group(function () {
-  Route::get('/daftar-user', [UserController::class, 'index']);
+  Route::resource('/daftar-user', UserController::class);
 });
