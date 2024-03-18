@@ -36,23 +36,32 @@
               <tr>
                 <th scope="col text-cente">#</th>
                 <th scope="col">Nama</th>
-                <th scope="col">NIS</th>
+                <th scope="col">Mata Pelajaran</th>
                 <th scope="col">Jenis kelamin</th>
                 <th scope="col">Opsi</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>328746283</td>
-                <td>Laki-laki</td>
-                <td class="d-flex gap-3">
-                  <a href="#" class="text-decoration-none badge text-bg-primary">Detail</a>
-                  <a href="#" class="text-decoration-none badge text-bg-warning">Edit</a>
-                  <a href="#" class="text-decoration-none badge text-bg-danger">Delete</a>
-                </td>
-              </tr>
+              @foreach ($guru as $g)
+              <?php 
+              $mapelItem = $mapel->firstWhere('id', $g->mata_pelajaran)
+              ?>
+                <tr>
+                  <th scope="row">{{ $loop->iteration }}</th>
+                  <td>{{ $g->nama }}</td>
+                  <td>{{ $mapelItem->nama }}</td>
+                  <td>{{ $g->jenis_kelamin }}</td>
+                  <td>
+                    <a href="/daftar-guru/{{ $g->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>
+                    <a href="/daftar-guru/{{ $g->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
+                    <form action="/daftar-guru/{{ $g->id }}" class="d-inline" method="post">
+                      @method('delete')
+                      @csrf
+                      <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -65,13 +74,6 @@
 
   <!-- Modal -->
   
-  @if($errors->any())
-  <script>
-    $(document).ready(function(){
-        $("#guru").modal('show');
-    });
-  </script>
-  @endif
 <div class="modal fade @if($errors->any()) show @endif" id="guru" tabindex="-1" aria-labelledby="guruLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-sm-down">
     <form class="modal-content" method="post" action="/daftar-guru">
@@ -90,25 +92,16 @@
           </div>
           @enderror
         </div>
-
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control @error('nis') is-invalid @enderror" id="nis" placeholder="NIS" name="nis" value="{{ old('nis') }}" required>
-          <label for="nis">NIS</label>
-          @error('nis')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-          @enderror
-        </div>
-
-        {{-- berdasarkan database --}}
         <div class="mb-3">
-          <select class="form-select @error('kelas') is-invalid @enderror" name="kelas" required>
-            <option value="" disabled {{ old('kelas') ? '' : 'selected' }}>Kelas</option>
-            <option value="1" {{ old('kelas') == '1' ? 'selected' : '' }}>One</option>
-            <option value="2" {{ old('kelas') == '2' ? 'selected' : '' }}>Two</option>
-            <option value="3" {{ old('kelas') == '3' ? 'selected' : '' }}>Three</option>
+          <select class="form-select @error('mata_pelajaran') is-invalid @enderror" name="mata_pelajaran" required>
+            <option value="mapel" disabled {{ old('mapel') ? '' : 'selected' }}>Mata Pelajaran</option>
+            @foreach ($mapel as $m)
+            <option value="{{ $m->id }}" {{ old('mapel') == $m->nama ? 'selected' : '' }}>{{ $m->nama }}</option>
+            @endforeach
           </select>
+          @error('mapel')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         
         <div class="form-floating mb-3">
@@ -140,7 +133,7 @@
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" placeholder="Alamat" name="alamat"  value="{{ old('alamat') }}" required>
+          <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" placeholder="Alamat" name="alamat" value="{{ old('alamat') }}" required>
           <label for="alamat">Alamat</label>
           @error('alamat')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -164,4 +157,11 @@
   </div>
 </div>
 
+@if($errors->any())
+<script>
+  $(document).ready(function(){
+      $("#guru").modal('show');
+  });
+</script>
+@endif
 @endsection

@@ -1,3 +1,7 @@
+<?php 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Request;
+?>
 @include('dashboard/layouts/header')
 <body>
 @include('dashboard/layouts/svg')
@@ -5,7 +9,7 @@
 <div class="container-fluid">
   <div class="row">
     @include('dashboard/layouts/sidebar')
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 vh-100">
+    <main class="container col-md-9 ms-sm-auto col-lg-10 px-md-4 vh-100">
       @yield('container')
     </main>
   </div>

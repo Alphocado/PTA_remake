@@ -26,6 +26,7 @@ return new class extends Migration
       $table->enum('agama', ['islam', 'kristen', 'katolik', 'buddah', 'hindu']);
       $table->string('alamat');
       $table->date('tgl_lahir');
+      $table->timestamps();
     });
 
     Schema::create('kelas', function (Blueprint $table) {

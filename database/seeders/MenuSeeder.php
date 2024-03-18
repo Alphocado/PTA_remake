@@ -17,7 +17,7 @@ class MenuSeeder extends Seeder
       'name' => 'Dashboard',
       'logo' => 'house-fill',
       'role' => 1,
-      'slug' => '/',
+      'slug' => 'dashboard',
     ]);
 
     Menu::create([

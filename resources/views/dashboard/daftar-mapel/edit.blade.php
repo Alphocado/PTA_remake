@@ -15,6 +15,7 @@
       </div>
       @enderror
     </div>
+    <a href="/daftar-mapel" class="btn btn-secondary">Kembali</a>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

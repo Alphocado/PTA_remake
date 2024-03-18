@@ -43,7 +43,7 @@
             <tbody class="table-group-divider">
               @foreach ($mapel as $m)
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $m->nama }}</td>
                   <td>
                   </td>

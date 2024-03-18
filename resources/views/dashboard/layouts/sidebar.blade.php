@@ -6,7 +6,8 @@
     </div>
     {{-- active class --}}
     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-
+      
+      {{-- Sidebar menu items --}}
       @foreach($sub_menus as $sub_menu)
         @if($sub_menu->role != 1 && $sub_menu->role <= auth()->user()->role)
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
@@ -15,11 +16,14 @@
         @endif
         @foreach($menus as $menu)
           @if($menu->role == $sub_menu->role && $sub_menu->role <= auth()->user()->role)
+          <?php 
+          $newSlug = ($menu->slug == '') ? '/' : $menu->slug;
+          ?>
           <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 {{ Request::is($menu->slug) ? 'active' : '' }}" href="{{ $menu->slug }}">
+              <a class="nav-link d-flex align-items-center gap-2 {{ Request::url() === url('/') && $menu->slug === '/' ? 'active' : (Str::startsWith(Request::url(), url($newSlug)) ? 'active' : '') }}" href="/{{ $menu->slug }}">
                 <svg class="bi"><use xlink:href="#{{ $menu->logo }}"/></svg>
-                  {{ $menu->name }}
+                {{ $menu->name }}
               </a>
             </li>
           </ul>
@@ -27,12 +31,8 @@
         @endforeach
       @endforeach
 
-      
-      
-      
-
+      {{-- Logout link --}}
       <hr class="my-3">
-
       <ul class="nav flex-column mb-auto">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="/logout">

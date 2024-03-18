@@ -17,6 +17,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UserController;
 
+Route::redirect('/', '/dashboard');
 
 Route::get('/login', [LoginController::class, 'index'])->middleware(Guest::class);
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -24,7 +25,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::middleware(['check-role1'])->group(function () {
-  Route::get('/', [DashboardController::class, 'index']);
+  Route::get('/dashboard', [DashboardController::class, 'index']);
   Route::get('/absensi', [AbsenController::class, 'index']);
   Route::get('/siswa', [SiswaReadController::class, 'index']);
 });
