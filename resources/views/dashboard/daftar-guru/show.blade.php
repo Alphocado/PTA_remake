@@ -9,7 +9,7 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{ $guru->nama }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ $mapel->nama }}</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ $guru->mapel->nama }}</h6>
         <p class="card-text">Jenis Kelamin : {{ $guru->jenis_kelamin }}</p>
         <p class="card-text">Agama : {{ $guru->agama }}</p>
         <p class="card-text">Alamat : {{ $guru->alamat }}</p>

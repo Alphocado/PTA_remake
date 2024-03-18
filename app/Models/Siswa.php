@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siswa extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  protected $table = 'siswa';
+  protected $guarded = ['id'];
+
+  public function nama_kelas()
+  {
+    return $this->belongsTo(Kelas::class, 'kelas');
+  }
 }

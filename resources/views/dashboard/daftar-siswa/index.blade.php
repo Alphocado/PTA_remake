@@ -37,22 +37,28 @@
                 <th scope="col text-cente">#</th>
                 <th scope="col">Nama</th>
                 <th scope="col">NIS</th>
-                <th scope="col">Jenis kelamin</th>
+                <th scope="col">Kelas</th>
                 <th scope="col">Opsi</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>328746283</td>
-                <td>Laki-laki</td>
-                <td class="d-flex gap-3">
-                  <a href="#" class="text-decoration-none badge text-bg-primary">Detail</a>
-                  <a href="#" class="text-decoration-none badge text-bg-warning">Edit</a>
-                  <a href="#" class="text-decoration-none badge text-bg-danger">Delete</a>
+              @foreach ($siswa as $s)
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td>{{ $s->nama }}</td>
+                <td>{{ $s->nis }}</td>
+                <td>{{ $s->nama_kelas->nama }}</td>
+                <td>
+                  <a href="/daftar-siswa/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>
+                  <a href="/daftar-siswa/{{ $s->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
+                  <form action="/daftar-siswa/{{ $s->id }}" class="d-inline" method="post">
+                    @method('delete')
+                    @csrf
+                    <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                  </form>
                 </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -104,10 +110,10 @@
         {{-- berdasarkan database --}}
         <div class="mb-3">
           <select class="form-select @error('kelas') is-invalid @enderror" name="kelas" required>
-            <option value="" disabled {{ old('kelas') ? '' : 'selected' }}>Kelas</option>
-            <option value="1" {{ old('kelas') == '1' ? 'selected' : '' }}>One</option>
-            <option value="2" {{ old('kelas') == '2' ? 'selected' : '' }}>Two</option>
-            <option value="3" {{ old('kelas') == '3' ? 'selected' : '' }}>Three</option>
+            <option value="kelas" disabled {{ old('kelas') ? '' : 'selected' }}>Pilih Kelas</option>
+            @foreach ($kelas as $g)
+                <option value="{{ $g->id }}" {{ old('kelas') == $g->nama ? 'selected' : '' }}>{{ $g->nama }}</option>
+            @endforeach
           </select>
         </div>
         

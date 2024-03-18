@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\SubMenu;
+use App\Models\Kelas;
 
 class SiswaController extends Controller
 {
@@ -18,6 +19,8 @@ class SiswaController extends Controller
       'title' => 'Siswa',
       'menus' => Menu::all(),
       'sub_menus' => SubMenu::all(),
+      'siswa' => Siswa::all(),
+      'kelas' => Kelas::all()
     ]);
   }
 
@@ -38,12 +41,13 @@ class SiswaController extends Controller
     $validateData = $request->validate([
       'nama' => 'required|max:255',
       'nis' => 'required|size:9',
-      'jenis_kelamin' => 'required',
       'kelas' => 'required|not_in:kelas',
+      'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
       'alamat' => 'required|max:255',
       'tgl_lahir' => 'required|date'
     ]);
+    Siswa::create($validateData);
 
     return redirect('/daftar-siswa')->with('success', 'Data baru telah ditambahkan');
   }
@@ -51,32 +55,58 @@ class SiswaController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Siswa $siswa)
+  public function show(string $id)
   {
-    //
+    $siswa = Siswa::findOrFail($id);
+    $kelas = Kelas::findOrFail($siswa->kelas);
+
+    return view('dashboard/daftar-siswa/show', [
+      'title' => 'Siswa',
+      'menus' => Menu::all(),
+      'sub_menus' => SubMenu::all(),
+      'siswa' => $siswa,
+      'kelas' => $kelas,
+    ]);
   }
 
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Siswa $siswa)
+  public function edit(string $id)
   {
-    //
+    return view('dashboard/daftar-siswa/edit', [
+      'title' => 'Guru',
+      'menus' => Menu::all(),
+      'sub_menus' => SubMenu::all(),
+      'siswa' => Siswa::findOrFail($id),
+      'kelas' => Kelas::all(),
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Siswa $siswa)
+  public function update(Request $request, string $id)
   {
-    //
+    $validateData = $request->validate([
+      'nama' => 'required|max:255',
+      'nis' => 'required|size:9',
+      'kelas' => 'required',
+      'jenis_kelamin' => 'required',
+      'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
+      'alamat' => 'required|max:255',
+      'tgl_lahir' => 'required|date'
+    ]);
+    Siswa::where('id', $id)->update($validateData);
+    return redirect('/daftar-siswa')->with('success', 'Data siswa berhasil diubah');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Siswa $siswa)
+  public function destroy(string $id)
   {
-    //
+    Siswa::destroy($id);
+    return redirect('/daftar-siswa')->with('success', 'Data siswa telah dihapus');
   }
 }

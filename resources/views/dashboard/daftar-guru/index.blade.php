@@ -49,7 +49,7 @@
                 <tr>
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $g->nama }}</td>
-                  <td>{{ $mapelItem->nama }}</td>
+                  <td>{{ $g->mapel->nama }}</td>
                   <td>{{ $g->jenis_kelamin }}</td>
                   <td>
                     <a href="/daftar-guru/{{ $g->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>

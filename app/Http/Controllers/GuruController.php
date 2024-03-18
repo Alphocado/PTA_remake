@@ -22,14 +22,6 @@ class GuruController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
    * Store a newly created resource in storage.
    */
   public function store(Request $request)
@@ -57,7 +49,7 @@ class GuruController extends Controller
       'menus' => Menu::all(),
       'sub_menus' => SubMenu::all(),
       'guru' => Guru::findOrFail($id),
-      'mapel' => Mapel::findOrFail($id),
+      'mapel' => Mapel::all(),
     ]);
   }
 
@@ -80,7 +72,16 @@ class GuruController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $validatedData = $request->validate([
+      'nama' => 'required|max:255',
+      'mata_pelajaran' => 'required|not_in:mapel',
+      'jenis_kelamin' => 'required',
+      'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
+      'alamat' => 'required|max:255',
+      'tgl_lahir' => 'required|date'
+    ]);
+    Guru::where('id', $id)->update($validatedData);
+    return redirect('/daftar-guru')->with('success', 'Data guru berhasil diubah');
   }
 
   /**
