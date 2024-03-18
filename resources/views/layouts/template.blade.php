@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   {{-- Bootstrap 5.3 --}}
-  <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ mix('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+
 
   {{-- CSS Vanila --}}
   <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
@@ -16,6 +17,6 @@
 <body>
   @yield('container')
 
-<script src="{{ asset('bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ mix('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

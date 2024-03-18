@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Mapel;
 use App\Models\Guru;
+use App\Models\Kelas;
 
 class MapelController extends Controller
 {

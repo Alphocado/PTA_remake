@@ -1,7 +1,7 @@
 @extends('dashboard/layouts/template')
 @section('container')
 
-  <h1 class="mt-5">ini adalah guru crud</h1>
+  <h1 class="mt-5">Daftar Mapel</h1>
 
   @if(session()->has('success'))
   <div class="alert alert-success col-lg-8" role="alert">
