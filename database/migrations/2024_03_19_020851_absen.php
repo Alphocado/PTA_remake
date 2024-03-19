@@ -22,7 +22,8 @@ return new class extends Migration
       $table->unsignedBigInteger('mata_pelajaran');
       $table->foreign('mata_pelajaran')->references('id')->on('mapel')->onDelete('cascade');
       $table->enum('absen', ['hadir', 'sakit', 'izin', 'alpha']);
-      $table->dateTime('tgl_buat');
+      $table->date('tgl_buat');
+      $table->time('jam_buat');
       $table->timestamps();
     });
   }

@@ -34,7 +34,8 @@ class AbsenController extends Controller
   public function store(Request $request)
   {
     $absenValues = [];
-    $currentDate = date('Y-m-d H:i:s');
+    $tgl_buat = date('Y-m-d');
+    $jam_buat = date('H:i:s');
     foreach ($request->all() as $key => $value) {
       if (strpos($key, 'absen-') === 0) {
         $id = substr($key, strlen('absen-'));
@@ -49,7 +50,7 @@ class AbsenController extends Controller
     ]);
 
     foreach ($absenValues as $id => $absen) {
-      $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id, 'tgl_buat' => $currentDate]);
+      $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id, 'tgl_buat' => $tgl_buat, 'jam_buat' => $jam_buat]);
       Absen::create($absenData);
     }
 

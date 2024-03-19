@@ -34,23 +34,17 @@
   </div>
 
   {{-- Tanggal buat --}}
-  {{-- <div class="mb-3">
+  <div class="mb-3">
     <select class="form-select" id="tanggal-select" name="tgl_buat" required>
-      <option value="tgl_buat" disabled selected>Mata Pelajaran</option>
-      @foreach ($mapel as $m)
-      <option value="{{ $m->id }}">{{ $m->nama }}</option>
+      <option value="tgl_buat" disabled selected>Tanggal Buat</option>
+      @foreach ($tgl_buat as $tb)
+      <option value="{{ $tb }}">{{ $tb }}</option>
       @endforeach
     </select>
-  </div> --}}
+  </div>
 
   {{-- Mata Pelajaran --}}
-  <div class="mb-3">
-    <select class="form-select" id="mapel-select" name="mata_pelajaran" required>
-      <option value="mapel" disabled selected>Mata Pelajaran</option>
-      @foreach ($mapel as $m)
-      <option value="{{ $m->id }}">{{ $m->nama }}</option>
-      @endforeach
-    </select>
+  <div class="mb-3" id="place-mapel">
   </div>
 
   {{-- list murid --}}

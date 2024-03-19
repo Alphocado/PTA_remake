@@ -41,4 +41,6 @@ Route::middleware(['check-role3'])->group(function () {
 });
 
 Route::post('/absen-siswa/{id}', [AbsenController::class, 'getSiswa']);
+
 Route::post('/data-absen/{id}', [DataAbsenController::class, 'getData']);
+Route::post('/tanggal-select', [DataAbsenController::class, 'getTgl']);
