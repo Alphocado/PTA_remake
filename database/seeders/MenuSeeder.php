@@ -28,17 +28,17 @@ class MenuSeeder extends Seeder
     ]);
 
     Menu::create([
+      'name' => 'Data Absen',
+      'logo' => 'people',
+      'role' => 1,
+      'slug' => 'data-absen',
+    ]);
+
+    Menu::create([
       'name' => 'Siswa',
       'logo' => 'people',
       'role' => 1,
       'slug' => 'siswa',
-    ]);
-
-    Menu::create([
-      'name' => 'List Absensi',
-      'logo' => 'people',
-      'role' => 1,
-      'slug' => 'list-absensi',
     ]);
 
     Menu::create([

@@ -2,14 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Middleware\CheckRole1;
-use App\Http\Middleware\CheckRole2;
-use App\Http\Middleware\CheckRole3;
 use App\Http\Middleware\Guest;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\DataAbsenController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaReadController;
 use App\Http\Controllers\GuruController;
@@ -27,6 +25,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::middleware(['check-role1'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index']);
   Route::resource('/absensi', AbsenController::class);
+  Route::resource('/data-absen', DataAbsenController::class);
   Route::get('/siswa', [SiswaReadController::class, 'index']);
 });
 
@@ -42,3 +41,4 @@ Route::middleware(['check-role3'])->group(function () {
 });
 
 Route::post('/absen-siswa/{id}', [AbsenController::class, 'getSiswa']);
+Route::post('/data-absen/{id}', [DataAbsenController::class, 'getData']);

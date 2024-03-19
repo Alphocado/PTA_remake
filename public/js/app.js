@@ -28,7 +28,7 @@
 
 $(document).ready(function() {
   $('#kelas-select').on('change', function(){
-    var kode = $(this).val();
+    let kode = $(this).val();
     if(kode){
       $.ajax({
         url: '/absen-siswa/' + kode,
@@ -40,6 +40,29 @@ $(document).ready(function() {
         dataType: 'html',
         success: function(response){
           $('#absen-table').html(response);
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
+    } else {
+
+    }
+  });
+  $('#mapel-select').on('change', function(){
+    let kode = $(this).val();
+    console.log(kode); 
+    if(kode){
+      $.ajax({
+        url: '/data-absen/' + kode,
+        type: 'POST',
+        data: {
+          '_token': $('meta[name="csrf-token"]').attr('content'),
+          'kode': kode
+        },
+        dataType: 'html',
+        success: function(response){
+          $('#data-absen').html(response);
         },
         error: function(xhr, status, error) {
           console.error(xhr.responseText);

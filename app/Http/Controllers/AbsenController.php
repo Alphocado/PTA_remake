@@ -34,32 +34,30 @@ class AbsenController extends Controller
   public function store(Request $request)
   {
     $absenValues = [];
-
-    // Loop through all request inputs
+    $currentDate = date('Y-m-d H:i:s');
     foreach ($request->all() as $key => $value) {
-      // Check if the input key starts with 'absen-'
       if (strpos($key, 'absen-') === 0) {
-        // Extract the ID from the input key
         $id = substr($key, strlen('absen-'));
-
-        // Add the ID and its corresponding value to the array
         $absenValues[$id] = $value;
       }
     }
 
-    // Validate the main request data
     $validatedData = $request->validate([
       'guru' => 'required',
       'mata_pelajaran' => 'required|not_in:mapel',
       'kelas' => 'required|not_in:kelas',
     ]);
 
-    // Loop through the absenValues and create Absen records
     foreach ($absenValues as $id => $absen) {
-      $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id]);
+      $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id, 'tgl_buat' => $currentDate]);
       Absen::create($absenData);
     }
 
     return redirect('/absensi')->with('success', 'Data baru telah ditambahkan');
+  }
+
+  public function show()
+  {
+    echo 'halo';
   }
 }
