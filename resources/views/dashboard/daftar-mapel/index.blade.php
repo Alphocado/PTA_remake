@@ -46,6 +46,12 @@
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $m->nama }}</td>
                   <td>
+                    @foreach ($m->gurus as $index => $guru)
+                      <a href="/daftar-guru/{{ $guru->id }}">{{ $guru->nama }}</a>
+                      @if (!$loop->last && $index !== count($m->gurus) - 1)
+                        |
+                      @endif
+                    @endforeach
                   </td>
                   <td>
                     <a href="/daftar-mapel/{{ $m->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>

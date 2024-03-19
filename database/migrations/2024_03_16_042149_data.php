@@ -20,8 +20,9 @@ return new class extends Migration
     Schema::create('guru', function (Blueprint $table) {
       $table->id();
       $table->string('nama');
+      $table->string('nis')->unique();
       $table->unsignedBigInteger('mata_pelajaran');
-      $table->foreign('mata_pelajaran')->references('id')->on('mapel')->onDelete('cascade'); // Change 'mata_pelajaran' to 'mapel'
+      $table->foreign('mata_pelajaran')->references('id')->on('mapel')->onDelete('cascade');
       $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
       $table->enum('agama', ['islam', 'kristen', 'katolik', 'buddah', 'hindu']);
       $table->string('alamat');

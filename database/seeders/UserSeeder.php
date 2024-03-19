@@ -28,13 +28,5 @@ class UserSeeder extends Seeder
       'role' => '2',
       'password' => 'mod'
     ]);
-
-    User::create([
-      'name' => 'guru',
-      'nis' => '1',
-      'email' => 'guru@gmail.com',
-      'role' => '1',
-      'password' => 'guru'
-    ]);
   }
 }

@@ -37,7 +37,7 @@
                 <th scope="col text-cente">#</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Mata Pelajaran</th>
-                <th scope="col">Jenis kelamin</th>
+                <th scope="col">NIS</th>
                 <th scope="col">Opsi</th>
               </tr>
             </thead>
@@ -50,7 +50,7 @@
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $g->nama }}</td>
                   <td>{{ $g->mapel->nama }}</td>
-                  <td>{{ $g->jenis_kelamin }}</td>
+                  <td>{{ $g->nis }}</td>
                   <td>
                     <a href="/daftar-guru/{{ $g->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>
                     <a href="/daftar-guru/{{ $g->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
@@ -83,6 +83,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+
         <div class="form-floating mb-3">
           <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Nama" name="nama" value="{{ old('nama') }}" required>
           <label for="nama">Nama</label>
@@ -92,6 +93,17 @@
           </div>
           @enderror
         </div>
+        
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control @error('nis') is-invalid @enderror" id="nis" placeholder="NIS" name="nis" value="{{ old('nis') }}" required>
+          <label for="nis">NIS</label>
+          @error('nis')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
+
         <div class="mb-3">
           <select class="form-select @error('mata_pelajaran') is-invalid @enderror" name="mata_pelajaran" required>
             <option value="mapel" disabled {{ old('mapel') ? '' : 'selected' }}>Mata Pelajaran</option>

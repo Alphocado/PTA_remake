@@ -28,6 +28,7 @@ class GuruController extends Controller
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
+      'nis' => 'required|size:9',
       'mata_pelajaran' => 'required|not_in:mapel',
       'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
@@ -74,6 +75,7 @@ class GuruController extends Controller
   {
     $validatedData = $request->validate([
       'nama' => 'required|max:255',
+      'nis' => 'required|size:9|unique',
       'mata_pelajaran' => 'required|not_in:mapel',
       'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',

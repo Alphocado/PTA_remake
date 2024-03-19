@@ -40,3 +40,5 @@ Route::middleware(['check-role2'])->group(function () {
 Route::middleware(['check-role3'])->group(function () {
   Route::resource('/daftar-user', UserController::class);
 });
+
+Route::post('/absen-siswa/{id}', [AbsenController::class, 'getSiswa']);
