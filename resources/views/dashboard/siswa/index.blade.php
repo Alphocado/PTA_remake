@@ -1,15 +1,14 @@
 @extends('dashboard/layouts/template')
 @section('container')
-  <h1>ini adalah siswa</h1>
+  <h1 class="my-3">List</h1>
 
 
-  {{-- list kelas --}}
-  <select class="form-select form-select mb-3">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  </select>
+  <form class="input-group mb-3">
+    @csrf
+    <input type="text" class="form-control" placeholder="Cari siswa">
+    <button class="input-group-text" id="basic-addon2">Cari</button>
+  </form>
+  
   
   {{-- list murid --}}
   <div class="table-responsive-md">
@@ -19,18 +18,20 @@
           <th scope="col text-cente">#</th>
           <th scope="col">Nama</th>
           <th scope="col">NIS</th>
-          <th scope="col">Jenis kelamin</th>
+          <th scope="col">Kelas</th>
           <th scope="col">Opsi</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
+        @foreach ($siswa as $s)
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>328746283</td>
-          <td>Laki-laki</td>
-          <td><a href="#" class="text-decoration-none badge text-bg-primary">Detail</a></td>
+          <th scope="row">{{ $loop->iteration }}</th>
+          <td>{{ $s->nama }}</td>
+          <td>{{ $s->nis }}</td>
+          <td>{{ $s->nama_kelas->nama }}</td>
+          <td><a href="/siswa/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail</a></td>
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

@@ -26,7 +26,7 @@ Route::middleware(['check-role1'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index']);
   Route::resource('/absensi', AbsenController::class);
   Route::resource('/data-absen', DataAbsenController::class);
-  Route::get('/siswa', [SiswaReadController::class, 'index']);
+  Route::resource('/siswa', SiswaReadController::class);
 });
 
 Route::middleware(['check-role2'])->group(function () {
@@ -41,6 +41,5 @@ Route::middleware(['check-role3'])->group(function () {
 });
 
 Route::post('/absen-siswa/{id}', [AbsenController::class, 'getSiswa']);
-
 Route::post('/data-absen/{id}', [DataAbsenController::class, 'getData']);
 Route::post('/tanggal-select', [DataAbsenController::class, 'getTgl']);

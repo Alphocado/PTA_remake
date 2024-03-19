@@ -1,4 +1,40 @@
 @extends('dashboard/layouts/template')
 @section('container')
-  <h1>ini adalah user</h1>
+  <h1 class="my-3">List</h1>
+
+
+  <form class="input-group mb-3">
+    @csrf
+    <input type="text" class="form-control" placeholder="Cari siswa">
+    <button class="input-group-text" id="basic-addon2">Cari</button>
+  </form>
+  
+  
+  {{-- list murid --}}
+  <div class="table-responsive-md">
+    <table class="table">
+      <thead class="table-white table-striped-columns">
+        <tr>
+          <th scope="col text-cente">#</th>
+          <th scope="col">Nama</th>
+          <th scope="col">NIS</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Opsi</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        @foreach ($user as $s)
+        <tr>
+          <th scope="row">{{ $loop->iteration }}</th>
+          <td>{{ $s->name }}</td>
+          <td>{{ $s->nis }}</td>
+          <td>{{ $s->email }}</td>
+          <td>{{ $s->role }}</td>
+          <td><a href="/siswa/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail</a></td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 @endsection
