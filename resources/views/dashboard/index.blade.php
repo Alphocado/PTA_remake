@@ -9,7 +9,7 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">{{ auth()->user()->name }}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">{{ auth()->user()->role }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ auth()->user()->nis }}</h6>
           <p class="card-text">Deskripsi</p>
         </div>
       </div>

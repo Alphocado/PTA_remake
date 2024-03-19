@@ -38,3 +38,20 @@
   color: #f4eee0;
   background-color: #393646;
 }
+
+.table tbody {
+  display: block;
+  height: 50vh;
+  overflow: auto;
+}
+.table thead, .table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* even columns width , fix width of table too*/
+}
+.table thead {
+  width: calc(100% - 1em);
+}
+.table table {
+  width: 400px;
+}

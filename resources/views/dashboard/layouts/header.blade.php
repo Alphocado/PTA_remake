@@ -97,4 +97,5 @@
 <!-- Custom styles for this template -->
 <script src="{{ mix('node_modules/jquery/dist/jquery.min.js') }}"></script>
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 </head>

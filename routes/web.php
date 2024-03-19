@@ -26,7 +26,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['check-role1'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index']);
-  Route::get('/absensi', [AbsenController::class, 'index']);
+  Route::resource('/absensi', AbsenController::class);
   Route::get('/siswa', [SiswaReadController::class, 'index']);
 });
 

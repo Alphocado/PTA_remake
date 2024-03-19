@@ -29,7 +29,6 @@
 $(document).ready(function() {
   $('#kelas-select').on('change', function(){
     var kode = $(this).val();
-    console.log(kode);
     if(kode){
       $.ajax({
         url: '/absen-siswa/' + kode,

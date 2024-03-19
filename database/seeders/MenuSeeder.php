@@ -35,6 +35,13 @@ class MenuSeeder extends Seeder
     ]);
 
     Menu::create([
+      'name' => 'List Absensi',
+      'logo' => 'people',
+      'role' => 1,
+      'slug' => 'list-absensi',
+    ]);
+
+    Menu::create([
       'name' => 'Daftar Siswa',
       'logo' => 'file-earmark-text',
       'role' => 2,

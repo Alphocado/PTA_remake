@@ -1,18 +1,30 @@
-<table class="table">
-  <thead class="table-white table-striped-columns">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nama</th>
-      <th colspan="4" scope="col" class="text-center">Absen</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    @foreach ($siswa as $s)
-    <tr>
-      <th scope="row">{{ $loop->iteration }}</th>
-      <td>{{ $s->nama }}</td>
-      <!-- Add your input fields for Absen options here -->
-    </tr>
-    @endforeach
-  </tbody>
-</table>
+@foreach ($siswa as $s)
+<tr>
+  <th scope="row">{{ $loop->iteration }}</th>
+  <td>{{ $s->nama }}</td>
+  <td>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="absen-{{ $s->id }}" id="hadir-{{ $s->nis }}" value="hadir" required>  
+      <label class="form-check-label" for="hadir-{{ $s->nis }}">Hadir</label>
+    </div>
+  </td>
+  <td>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="absen-{{ $s->id }}" id="sakit-{{ $s->nis }}" value="sakit" required>  
+      <label class="form-check-label" for="sakit-{{ $s->nis }}">Sakit</label>
+    </div>
+  </td>
+  <td>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="absen-{{ $s->id }}" id="izin-{{ $s->nis }}" value="izin" required>  
+      <label class="form-check-label" for="izin-{{ $s->nis }}">Izin</label>
+    </div>
+  </td>
+  <td>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="absen-{{ $s->id }}" id="alpha-{{ $s->nis }}" value="alpha" required>  
+      <label class="form-check-label" for="alpha-{{ $s->nis }}">Alpha</label>
+    </div>
+  </td>
+</tr>
+@endforeach
