@@ -15,10 +15,11 @@ class GuruController extends Controller
   {
     return view('dashboard/daftar-guru/index', [
       'title' => 'Guru',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'guru' => Guru::all(),
-      'mapel' => Mapel::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+
+      'guru' => Guru::select('nama', 'nis', 'id', 'mata_pelajaran')->get(),
+      'mapel' => Mapel::select('id', 'nama')->get(),
     ]);
   }
 
@@ -67,10 +68,9 @@ class GuruController extends Controller
   {
     return view('dashboard/daftar-guru/show', [
       'title' => 'Guru',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'guru' => Guru::findOrFail($id),
-      'mapel' => Mapel::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'guru' => Guru::select('nama', 'mata_pelajaran', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->first(),
     ]);
   }
 
@@ -81,10 +81,10 @@ class GuruController extends Controller
   {
     return view('dashboard/daftar-guru/edit', [
       'title' => 'Guru',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'guru' => Guru::findOrFail($id),
-      'mapel' => Mapel::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'guru' => Guru::select('id', 'nama', 'mata_pelajaran', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->first(),
+      'mapel' => Mapel::select('id', 'nama')->get(),
     ]);
   }
 

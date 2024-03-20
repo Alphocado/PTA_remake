@@ -13,9 +13,9 @@ class SiswaReadController extends Controller
   {
     return view('dashboard/siswa/index', [
       'title' => 'Siswa',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'siswa' => Siswa::all()
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'siswa' => Siswa::select('nama', 'nis', 'kelas', 'id')->get()
     ]);
   }
 
@@ -23,9 +23,9 @@ class SiswaReadController extends Controller
   {
     return view('dashboard/siswa/show', [
       'title' => 'Siswa',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'siswa' => Siswa::findOrFail($id)
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'siswa' => Siswa::select('nama', 'kelas', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->where('id', $id)->first()
     ]);
   }
 }

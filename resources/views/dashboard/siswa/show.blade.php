@@ -14,7 +14,7 @@
         <p class="card-text">Agama : {{ $siswa->agama }}</p>
         <p class="card-text">Alamat : {{ $siswa->alamat }}</p>
         <p class="card-text">Tanggal Lahir : {{ $siswa->tgl_lahir }}</p>
-        <a href="/daftar-siswa" class="btn btn-secondary">Kembali</a>
+        <a href="/siswa" class="btn btn-secondary">Kembali</a>
       </div>
     </div>
 

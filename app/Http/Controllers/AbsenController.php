@@ -15,7 +15,7 @@ class AbsenController extends Controller
   public function getSiswa(Request $request)
   {
     $kode = $request->input('kode');
-    $siswa = Siswa::where('kelas', $kode)->get();
+    $siswa = Siswa::where('kelas', $kode)->select('nama', 'nis', 'id')->get();
     return view('partials/absen-table', ['siswa' => $siswa])->render();
   }
 
@@ -23,11 +23,10 @@ class AbsenController extends Controller
   {
     return view('dashboard/absensi/index', [
       'title' => 'Absensi',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'kelas' => Kelas::all(),
-      'siswa' => Siswa::all(),
-      'mapel' => Mapel::all()
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'kelas' => Kelas::select('id', 'nama')->get(),
+      'mapel' => Mapel::select('id', 'nama')->get()
     ]);
   }
 
@@ -55,10 +54,5 @@ class AbsenController extends Controller
     }
 
     return redirect('/absensi')->with('success', 'Data baru telah ditambahkan');
-  }
-
-  public function show()
-  {
-    echo 'halo';
   }
 }

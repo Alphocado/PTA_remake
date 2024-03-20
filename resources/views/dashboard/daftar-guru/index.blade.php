@@ -43,9 +43,6 @@
             </thead>
             <tbody class="table-group-divider">
               @foreach ($guru as $g)
-              <?php 
-              $mapelItem = $mapel->firstWhere('id', $g->mata_pelajaran)
-              ?>
                 <tr>
                   <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $g->nama }}</td>
@@ -129,9 +126,11 @@
         <div class="mb-3">
           <select class="form-select @error('mata_pelajaran') is-invalid @enderror" name="mata_pelajaran" required>
             <option value="mapel" disabled {{ old('mapel') ? '' : 'selected' }}>Mata Pelajaran</option>
+
             @foreach ($mapel as $m)
             <option value="{{ $m->id }}" {{ old('mapel') == $m->nama ? 'selected' : '' }}>{{ $m->nama }}</option>
             @endforeach
+            
           </select>
           @error('mapel')
             <div class="invalid-feedback">{{ $message }}</div>

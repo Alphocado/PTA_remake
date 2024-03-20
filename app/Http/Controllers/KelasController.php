@@ -18,19 +18,11 @@ class KelasController extends Controller
   {
     return view('dashboard/daftar-kelas/index', [
       'title' => 'Kelas',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'kelas' => Kelas::all(),
-      'guru' => Guru::all()
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'kelas' => Kelas::select('nama', 'id_wali_kelas', 'id')->get(),
+      'guru' => Guru::select('id', 'nama')->get()
     ]);
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
   }
 
   /**
@@ -48,24 +40,16 @@ class KelasController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
-
-  /**
    * Show the form for editing the specified resource.
    */
   public function edit(string $id)
   {
     return view('dashboard/daftar-kelas/edit', [
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'title' => 'edit kelas',
-      'kelas' => Kelas::findOrFail($id),
-      'guru' => Guru::all()
+      'title' => 'Edit Kelas',
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'kelas' => Kelas::select('nama', 'id_wali_kelas', 'id')->first(),
+      'guru' => Guru::select('id', 'nama')->get()
     ]);
   }
   /**

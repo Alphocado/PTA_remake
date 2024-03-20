@@ -42,8 +42,8 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              <tr>
               @foreach ($siswa as $s)
+              <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $s->nama }}</td>
                 <td>{{ $s->nis }}</td>
@@ -59,6 +59,7 @@
                 </td>
               </tr>
               @endforeach
+              
             </tbody>
           </table>
         </div>
@@ -111,8 +112,8 @@
         <div class="mb-3">
           <select class="form-select @error('kelas') is-invalid @enderror" name="kelas" required>
             <option value="kelas" disabled {{ old('kelas') ? '' : 'selected' }}>Pilih Kelas</option>
-            @foreach ($kelas as $g)
-                <option value="{{ $g->id }}" {{ old('kelas') == $g->nama ? 'selected' : '' }}>{{ $g->nama }}</option>
+            @foreach ($kelas as $k)
+                <option value="{{ $k->id }}" {{ old('kelas') == $k->nama ? 'selected' : '' }}>{{ $k->nama }}</option>
             @endforeach
           </select>
         </div>

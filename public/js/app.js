@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  // AbsenController
   $('#kelas-select').on('change', function(){
     let kode = $(this).val();
     $.ajax({
@@ -18,6 +20,8 @@ $(document).ready(function() {
     });
   });
 
+  
+  // Tanggl buat dari dashboard.absensi.detail
   $('#tanggal-select').on('change', function(){
     let tanggal = $(this).val();
     let kelas = $('[name="id_kelas"]').val();

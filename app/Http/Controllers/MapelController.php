@@ -19,19 +19,11 @@ class MapelController extends Controller
   {
     return view('dashboard/daftar-mapel/index', [
       'title' => 'Siswa',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'mapel' => Mapel::all(),
-      'guru' => Guru::all()
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'mapel' => Mapel::select('id', 'nama')->get(),
+      'guru' => Guru::select('nama')->get()
     ]);
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
   }
 
   /**
@@ -48,23 +40,15 @@ class MapelController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
-
-  /**
    * Show the form for editing the specified resource.
    */
   public function edit(string $id)
   {
     return view('dashboard/daftar-mapel/edit', [
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'title' => 'edit mapel',
-      'mapel' => Mapel::findOrFail($id)
+      'title' => 'Edit Mapel',
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'mapel' => Mapel::select('nama', 'id')->where('id', $id)->first()
     ]);
   }
   /**

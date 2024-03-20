@@ -1,6 +1,6 @@
 @extends('dashboard/layouts/template')
-
 @section('container')
+
 @if(session()->has('success'))
   <div class="alert alert-success col-lg-8" role="alert">
     {{ session('success') }}
@@ -19,7 +19,6 @@
 
 <form action="/absensi" method="post">
   @csrf
-
   <div class="mb-3 mt-3 d-flex justify-content-between align-items-center">
     <h1>Absensi</h1>
     <a href="/data-absen" class="btn btn-secondary fs-5 px-4 d-flex align-items-center">List Absen</a>
@@ -27,7 +26,6 @@
 
   
   <input type="hidden" value="{{ auth()->user()->nis }}" name="guru">
-  {{-- list kelas --}}
   <div class="mb-3">
     <select class="form-select" name="mata_pelajaran" required>
       <option value="mapel" disabled selected>Mata Pelajaran</option>

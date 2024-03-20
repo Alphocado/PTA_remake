@@ -17,20 +17,11 @@ class SiswaController extends Controller
   {
     return view('dashboard/daftar-siswa/index', [
       'title' => 'Siswa',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'siswa' => Siswa::all(),
-      'kelas' => Kelas::all()
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'siswa' => Siswa::select('nama', 'nis', 'kelas', 'id')->get(),
+      'kelas' => Kelas::select('id', 'nama')->get()
     ]);
-  }
-
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
   }
 
   /**
@@ -57,13 +48,13 @@ class SiswaController extends Controller
    */
   public function show(string $id)
   {
-    $siswa = Siswa::findOrFail($id);
-    $kelas = Kelas::findOrFail($siswa->kelas);
+    $siswa = Siswa::select('nama', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir', 'kelas')->where('id', $id)->first();
+    $kelas = Kelas::select('nama')->where('id', $siswa->kelas)->first();
 
     return view('dashboard/daftar-siswa/show', [
       'title' => 'Siswa',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'siswa' => $siswa,
       'kelas' => $kelas,
     ]);
@@ -76,10 +67,10 @@ class SiswaController extends Controller
   {
     return view('dashboard/daftar-siswa/edit', [
       'title' => 'Guru',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'siswa' => Siswa::findOrFail($id),
-      'kelas' => Kelas::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'siswa' => Siswa::select('id', 'nis', 'nama', 'kelas', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->where('id', $id)->first(),
+      'kelas' => Kelas::select('id', 'nama')->get(),
     ]);
   }
 

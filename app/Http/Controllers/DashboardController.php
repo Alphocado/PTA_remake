@@ -12,8 +12,8 @@ class DashboardController extends Controller
   {
     return view('dashboard/index', [
       'title' => 'Dashboard',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
+      'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+      'sub_menus' => SubMenu::select('role', 'name')->get(),
     ]);
   }
 }
