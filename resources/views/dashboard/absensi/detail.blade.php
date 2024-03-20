@@ -35,6 +35,7 @@
 
   {{-- Tanggal buat --}}
   <div class="mb-3">
+    <input type="hidden" value="{{ $kelas->id }}" name="id_kelas">
     <select class="form-select" id="tanggal-select" name="tgl_buat" required>
       <option value="tgl_buat" disabled selected>Tanggal Buat</option>
       @foreach ($tgl_buat as $tb)

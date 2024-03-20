@@ -7,19 +7,19 @@ use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Mapel;
 use App\Models\Kelas;
-use App\Models\Siswa;
 use App\Models\Absen;
 
 
 class DataAbsenController extends Controller
 {
-
   public function getData(Request $request)
   {
     $kode = $request->input('kode');
     $tgl_buat = $request->input('tgl_buat');
+    $kelas = $request->input('kelas');
     $absen = Absen::where('mata_pelajaran', $kode)
       ->where('tgl_buat', $tgl_buat)
+      ->where('kelas', $kelas)
       ->orderBy('jam_buat', 'desc')
       ->get();
     $filteredAbsen = collect();
@@ -38,7 +38,8 @@ class DataAbsenController extends Controller
   public function getTgl(Request $request)
   {
     $tanggal = $request->input('kode');
-    return view('partials/tanggal-select', ['tgl_buat' => $tanggal, 'mapel' => Mapel::all()])->render();
+    $kelas = $request->input('kelas');
+    return view('partials/tanggal-select', ['tgl_buat' => $tanggal, 'kelas' => $kelas, 'mapel' => Mapel::all()])->render();
   }
 
   public function index()
@@ -53,20 +54,27 @@ class DataAbsenController extends Controller
 
   public function show(string $id)
   {
-    $absensi = Absen::where('kelas', $id)->latest('tgl_buat')->get();
+    // $absensi = Absen::where('kelas', $id)->latest('tgl_buat')->get();
     $absensiCheck = Absen::where('kelas', $id)->latest('tgl_buat')->first();
-
     $tgl_buat = Absen::distinct()->pluck('tgl_buat');
-
-    return view('dashboard.absensi.detail', [
-      'title' => 'Absensi',
-      'menus' => Menu::all(),
-      'sub_menus' => SubMenu::all(),
-      'kelas' => Kelas::where('id', $absensiCheck->kelas)->first(),
-      'mapel' => Mapel::all(),
-      // 'absen' => $absensi,
-      // 'siswa' => Siswa::all(),
-      'tgl_buat' => $tgl_buat
-    ]);
+    if ($absensiCheck) {
+      return view('dashboard.absensi.detail', [
+        'title' => 'Absensi',
+        'menus' => Menu::all(),
+        'sub_menus' => SubMenu::all(),
+        'kelas' => Kelas::where('id', $absensiCheck->kelas)->first(),
+        'mapel' => Mapel::all(),
+        // 'absen' => $absensi,
+        // 'siswa' => Siswa::all(),
+        'tgl_buat' => $tgl_buat
+      ]);
+    } else {
+      return view('dashboard.absensi.error', [
+        'title' => 'Absensi',
+        'menus' => Menu::all(),
+        'sub_menus' => SubMenu::all(),
+        'kelas' => Kelas::where('id', $id)->first()
+      ]);
+    }
   }
 }

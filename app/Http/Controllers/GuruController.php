@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Mapel;
 use App\Models\Guru;
+use App\Models\User;
 
 class GuruController extends Controller
 {
@@ -29,13 +30,32 @@ class GuruController extends Controller
     $validateData = $request->validate([
       'nama' => 'required|max:255',
       'nis' => 'required|size:9',
+      'email' => 'required|email',
+      'password' => 'required',
       'mata_pelajaran' => 'required|not_in:mapel',
       'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
       'alamat' => 'required|max:255',
       'tgl_lahir' => 'required|date'
     ]);
-    Guru::create($validateData);
+    $guru = [
+      'nama' => $validateData['nama'],
+      'nis' => $validateData['nis'],
+      'mata_pelajaran' => $validateData['mata_pelajaran'],
+      'jenis_kelamin' => $validateData['jenis_kelamin'],
+      'agama' => $validateData['agama'],
+      'alamat' => $validateData['alamat'],
+      'tgl_lahir' => $validateData['tgl_lahir']
+    ];
+    $user = [
+      'name' => $validateData['nama'],
+      'nis' => $validateData['nis'] . '',
+      'email' => $validateData['email'],
+      'role' => 1,
+      'password' => $validateData['password']
+    ];
+    User::create($user);
+    Guru::create($guru);
 
     return redirect('/daftar-guru')->with('success', 'Data baru telah ditambahkan');
   }
@@ -89,8 +109,10 @@ class GuruController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(string $id)
+  public function destroy(string $id, Request $request)
   {
+    // dd($request->nis);
+    User::where('nis', $request->nis)->delete();
     Guru::destroy($id);
     return redirect('/daftar-guru')->with('success', 'Data guru telah dihapus');
   }

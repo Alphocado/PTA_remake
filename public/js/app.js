@@ -20,12 +20,14 @@ $(document).ready(function() {
 
   $('#tanggal-select').on('change', function(){
     let tanggal = $(this).val();
+    let kelas = $('[name="id_kelas"]').val();
     $.ajax({
       url: '/tanggal-select',
       type: 'POST',
       data: {
         '_token': $('meta[name="csrf-token"]').attr('content'),
-        'kode': tanggal
+        'kode': tanggal,
+        'kelas': kelas,
       },
       dataType: 'html',
       success: function(response){

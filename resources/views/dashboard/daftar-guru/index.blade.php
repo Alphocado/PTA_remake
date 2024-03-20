@@ -10,9 +10,9 @@
   @endif
 
 {{-- add --}}
-  <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#guru">
-    Tambah Guru
-  </button>
+    <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#guru">
+      Tambah Guru
+    </button>
   
   
   {{-- search bar --}}
@@ -57,6 +57,7 @@
                     <form action="/daftar-guru/{{ $g->id }}" class="d-inline" method="post">
                       @method('delete')
                       @csrf
+                      <input type="hidden" value="{{ $g->nis }}" name="nis">
                       <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                   </td>
@@ -103,6 +104,27 @@
           </div>
           @enderror
         </div>
+
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="email" name="email" value="{{ old('email') }}" required>
+          <label for="email">Email</label>
+          @error('email')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
+        
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="password" name="password" value="{{ old('password') }}" required>
+          <label for="password">Password</label>
+          @error('password')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>
+
 
         <div class="mb-3">
           <select class="form-select @error('mata_pelajaran') is-invalid @enderror" name="mata_pelajaran" required>
