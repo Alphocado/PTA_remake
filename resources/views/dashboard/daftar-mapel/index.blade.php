@@ -17,13 +17,13 @@
   
   {{-- search bar --}}
   <div class="row">
-    <div class="col-6">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Cari data" >
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">Cari</span>
+    <div class="col-md-6">
+      <form class="input-group mb-3" action="/daftar-mapel">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Cari mapel" name="search" value="{{ request('search') }}">
+          <button class="input-group-text" type="submit" id="basic-addon2">Cari</button>
         </div>
-      </div>
+      </form>
     </div>
     <div class="row">
       
@@ -110,4 +110,7 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-center">
+  {{ $mapel->links() }}
+</div>
 @endsection

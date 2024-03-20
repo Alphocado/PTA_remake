@@ -19,7 +19,8 @@ class SiswaController extends Controller
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'siswa' => Siswa::select('nama', 'nis', 'kelas', 'id')->get(),
+      'siswa' => Siswa::select('siswa.*', 'kelas.nama as kelas_nama')
+        ->leftJoin('kelas', 'siswa.kelas', '=', 'kelas.id')->filter(request(['search']))->paginate(10),
       'kelas' => Kelas::select('id', 'nama')->get()
     ]);
   }
@@ -34,7 +35,7 @@ class SiswaController extends Controller
       'nis' => 'required|size:9',
       'kelas' => 'required|not_in:kelas',
       'jenis_kelamin' => 'required',
-      'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
+      'agama' => 'required|not_in:agama',
       'alamat' => 'required|max:255',
       'tgl_lahir' => 'required|date'
     ]);

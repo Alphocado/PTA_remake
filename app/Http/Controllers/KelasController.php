@@ -14,16 +14,19 @@ class KelasController extends Controller
    * Display a listing of the resource.
    */
 
-  public function index()
+  public function index(Request $request)
   {
+    $kelas = Kelas::filter($request->only('search'))->paginate(10);
+
     return view('dashboard/daftar-kelas/index', [
       'title' => 'Kelas',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'kelas' => Kelas::select('nama', 'id_wali_kelas', 'id')->get(),
+      'kelas' => $kelas,
       'guru' => Guru::select('id', 'nama')->get()
     ]);
   }
+
 
   /**
    * Store a newly created resource in storage.

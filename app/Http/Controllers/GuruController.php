@@ -17,8 +17,9 @@ class GuruController extends Controller
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
+      'guru' => Guru::select('guru.*', 'mapel.nama as kelas_nama')
+        ->leftJoin('mapel', 'guru.mata_pelajaran', '=', 'mapel.id')->filter(request(['search']))->paginate(10),
 
-      'guru' => Guru::select('nama', 'nis', 'id', 'mata_pelajaran')->get(),
       'mapel' => Mapel::select('id', 'nama')->get(),
     ]);
   }
@@ -83,7 +84,7 @@ class GuruController extends Controller
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'guru' => Guru::select('id', 'nama', 'mata_pelajaran', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->first(),
+      'guru' => Guru::findOrFail($id),
       'mapel' => Mapel::select('id', 'nama')->get(),
     ]);
   }

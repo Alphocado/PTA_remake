@@ -11,11 +11,27 @@ class SiswaReadController extends Controller
 {
   public function index()
   {
+    // $siswa = Siswa::select('nama', 'nis', 'kelas', 'id');
+
+    // if (request('search')) {
+    //   $siswa->where('nama', 'like', '%' . request('search') . '%')
+    //     ->orWhere('kelas', 'like', '%' . (request('search')) . '%')
+    //     ->orWhere('nis', 'like', '%' . request('search') . '%');
+    // }
+
+    // return view('dashboard/siswa/index', [
+    //   'title' => 'Siswa',
+    //   'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
+    //   'sub_menus' => SubMenu::select('role', 'name')->get(),
+    //   'siswa' => $siswa->get()
+    // ]);
+
     return view('dashboard/siswa/index', [
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'siswa' => Siswa::select('nama', 'nis', 'kelas', 'id')->get()
+      'siswa' => Siswa::select('siswa.*', 'kelas.nama as kelas_nama')
+        ->leftJoin('kelas', 'siswa.kelas', '=', 'kelas.id')->filter(request(['search']))->paginate(10)
     ]);
   }
 

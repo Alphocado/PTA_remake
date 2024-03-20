@@ -17,16 +17,15 @@
   
   {{-- search bar --}}
   <div class="row">
-    <div class="col-6">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Cari data" >
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2">Cari</span>
+    <div class="col-md-6">
+      <form class="input-group mb-3" action="/daftar-siswa">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Cari siswa" name="search" value="{{ request('search') }}">
+          <button class="input-group-text" type="submit" id="basic-addon2">Cari</button>
         </div>
-      </div>
+      </form>
     </div>
     <div class="row">
-      
       <div class="col">
   
         {{-- list murid --}}
@@ -134,7 +133,7 @@
 
         <div class="mb-3">
           <select class="form-select @error('agama') is-invalid @enderror" name="agama" required>
-            <option value="" disabled {{ old('agama') ? '' : 'selected' }}>Agama</option>
+            <option value="agama" disabled {{ old('agama') ? '' : 'selected' }}>Agama</option>
             <option value="islam" {{ old('agama') == 'islam' ? 'selected' : '' }}>Islam</option>
             <option value="kristen" {{ old('agama') == 'kristen' ? 'selected' : '' }}>Kristen</option>
             <option value="katolik" {{ old('agama') == 'katolik' ? 'selected' : '' }}>Katolik</option>
@@ -171,4 +170,8 @@
   </div>
 </div>
 
+
+<div class="d-flex justify-content-center">
+  {{ $siswa->links() }}
+</div>
 @endsection

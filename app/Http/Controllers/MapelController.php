@@ -17,12 +17,16 @@ class MapelController extends Controller
 
   public function index()
   {
+    $mapel = Mapel::select('id', 'nama')->filter(request(['search']))->paginate(10);
+
+    // Load the related gurus for each mapel to display in the view
+    $mapel->load('gurus');
+
     return view('dashboard/daftar-mapel/index', [
-      'title' => 'Siswa',
+      'title' => 'Daftar Mapel',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'mapel' => Mapel::select('id', 'nama')->get(),
-      'guru' => Guru::select('nama')->get()
+      'mapel' => $mapel,
     ]);
   }
 

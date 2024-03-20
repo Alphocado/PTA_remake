@@ -3,11 +3,16 @@
   <h1 class="my-3">List</h1>
 
 
-  <form class="input-group mb-3">
-    @csrf
-    <input type="text" class="form-control" placeholder="Cari siswa">
-    <button class="input-group-text" id="basic-addon2">Cari</button>
-  </form>
+  <div class="row">
+    <div class="col-md-6">
+      <form class="input-group mb-3" action="/siswa">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Cari siswa" name="search" value="{{ request('search') }}">
+          <button class="input-group-text" type="submit" id="basic-addon2">Cari</button>
+        </div>
+      </form>
+    </div>
+  </div>
   
   
   {{-- list murid --}}
@@ -35,4 +40,10 @@
       </tbody>
     </table>
   </div>
+
+
+<div class="d-flex justify-content-center">
+  {{ $siswa->links() }}
+</div>
+
 @endsection

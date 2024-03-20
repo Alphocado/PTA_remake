@@ -23,25 +23,28 @@
     <h1>Absensi</h1>
     <a href="/data-absen" class="btn btn-secondary fs-5 px-4 d-flex align-items-center">List Absen</a>
   </div>
-
-  
   <input type="hidden" value="{{ auth()->user()->nis }}" name="guru">
-  <div class="mb-3">
-    <select class="form-select" name="mata_pelajaran" required>
-      <option value="mapel" disabled selected>Mata Pelajaran</option>
-      @foreach ($mapel as $m)
-      <option value="{{ $m->id }}">{{ $m->nama }}</option>
-      @endforeach
-    </select>
-  </div>
-  
-  <div class="mb-3">
-    <select class="form-select" id="kelas-select" name="kelas" required>
-      <option value="kelas" disabled selected>Kelas</option>
-      @foreach ($kelas as $k)
-      <option value="{{ $k->id }}">{{ $k->nama }}</option>
-      @endforeach
-    </select>
+
+  <div class="row">
+
+    <div class="col-md-6 mb-3">
+      <select class="form-select" name="mata_pelajaran" required>
+        <option value="mapel" disabled selected>Mata Pelajaran</option>
+        @foreach ($mapel as $m)
+        <option value="{{ $m->id }}">{{ $m->nama }}</option>
+        @endforeach
+      </select>
+    </div>
+    
+    <div class="col-md-6 mb-3">
+      <select class="form-select" id="kelas-select" name="kelas" required>
+        <option value="kelas" disabled selected>Kelas</option>
+        @foreach ($kelas as $k)
+        <option value="{{ $k->id }}">{{ $k->nama }}</option>
+        @endforeach
+      </select>
+    </div>
+    
   </div>
 
   {{-- list murid --}}
