@@ -1,6 +1,6 @@
 @extends('dashboard/layouts/template')
 @section('container')
-  <h1 class="my-3">List</h1>
+  <h1 class="my-3">Semua Data Siswa</h1>
 
 
   <div class="row">
@@ -18,7 +18,7 @@
   {{-- list murid --}}
   <div class="table-responsive-md">
     <table class="table">
-      <thead class="table-white table-striped-columns">
+      <thead class="table-secondary table-striped-columns">
         <tr>
           <th scope="col text-cente">#</th>
           <th scope="col">Nama</th>
@@ -27,7 +27,7 @@
           <th scope="col">Opsi</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody>
         @foreach ($siswa as $s)
         <tr>
           <th scope="row">{{ $loop->iteration }}</th>

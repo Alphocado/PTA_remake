@@ -18,7 +18,7 @@
   {{-- list murid --}}
   <div class="table-responsive-md">
     <table class="table">
-      <thead class="table-white table-striped-columns">
+      <thead class="table-secondary table-striped-columns">
         <tr>
           <th scope="col text-cente">#</th>
           <th scope="col">Nama</th>
@@ -28,7 +28,7 @@
           <th scope="col">Opsi</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody>
         @foreach ($user as $s)
         <tr>
           <th scope="row">{{ $loop->iteration }}</th>
@@ -37,13 +37,13 @@
           <td>{{ $s->email }}</td>
           <td>{{ $s->role }}</td>
           <td>
-            <a href="/daftar-user/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail Akun</a>
-            <a href="/daftar-user/{{ $s->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit Akun</a>
+            <a href="/daftar-user/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>
+            <a href="/daftar-user/{{ $s->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
             <form action="/daftar-user/{{ $s->id }}" class="d-inline" method="post">
               @method('delete')
               @csrf
               <input type="hidden" value="{{ $s->nis }}" name="nis">
-              <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Hapus Akun</button>
+              <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Hapus</button>
             </form>
           </td>
         </tr>

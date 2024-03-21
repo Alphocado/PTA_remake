@@ -10,8 +10,6 @@
   
   {{-- bootstrap vanila --}}
   <link href="{{ mix('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ mix('node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet">
-  <link href="{{ mix('node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css') }}" rel="stylesheet">
   
   
   <style>
@@ -96,6 +94,9 @@
 
 <!-- Custom styles for this template -->
 <script src="{{ mix('node_modules/jquery/dist/jquery.min.js') }}"></script>
+<link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
+<link href="{{ asset('fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('fonts/Poppins/poppins.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 </head>

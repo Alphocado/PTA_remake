@@ -1,3 +1,7 @@
+body, * {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
 .login-body {
   width: 100%;
   height: 100vh;
@@ -37,21 +41,4 @@
 .btn-default:hover {
   color: #f4eee0;
   background-color: #393646;
-}
-
-.table tbody {
-  display: block;
-  height: 50vh;
-  overflow: auto;
-}
-.table thead, .table tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed; /* even columns width , fix width of table too*/
-}
-.table thead {
-  width: calc(100% - 1em);
-}
-.table table {
-  width: 400px;
 }

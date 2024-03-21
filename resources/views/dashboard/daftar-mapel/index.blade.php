@@ -32,7 +32,7 @@
         {{-- list murid --}}
         <div class="table-responsive-md">
           <table class="table">
-            <thead class="table-white table-striped-columns">
+            <thead class="table-secondary table-striped-columns">
               <tr>
                 <th scope="col text-cente">#</th>
                 <th scope="col">Mata Pelajaran</th>
@@ -40,7 +40,7 @@
                 <th scope="col">Opsi</th>
               </tr>
             </thead>
-            <tbody class="table-group-divider">
+            <tbody>
               @foreach ($mapel as $m)
                 <tr>
                   <th scope="row">{{ $loop->iteration }}</th>

@@ -31,7 +31,7 @@ class GuruController extends Controller
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
-      'nis' => 'required|size:9',
+      'nis' => 'required|size:9|numeric|unique:users|unique:guru',
       'email' => 'required|email',
       'password' => 'required',
       'mata_pelajaran' => 'required|not_in:mapel',

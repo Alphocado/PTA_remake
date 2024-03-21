@@ -21,7 +21,7 @@
   @csrf
 
   <div class="mb-3 mt-3 d-flex justify-content-between align-items-center">
-    <h1>Absensi</h1>
+    <h1>Halaman Absen yang telah dibuat</h1>
     <a href="/data-absen" class="btn btn-secondary fs-5 px-4 d-flex align-items-center">Kembali</a>
   </div>
 
@@ -46,25 +46,23 @@
 
   {{-- Mata Pelajaran --}}
   <div class="mb-3" id="place-mapel">
+
   </div>
 
   {{-- list murid --}}
-  <div class="table-responsive mb-3 tabel">
+  <div class="table-responsive-md mb-3">
     <table class="table">
-      <thead class="table-white table-striped-columns">
+      <thead class="table-secondary table-striped-columns">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nama</th>
           <th colspan="4" scope="col" class="text-center">Absen</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider" id="data-absen">  
-        
-
+      <tbody id="data-absen">  
+        {{-- here --}}
       </tbody>
     </table>
-  </div>
-
-  
+  </div>x  
 </form>
 @endsection

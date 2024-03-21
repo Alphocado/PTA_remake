@@ -32,7 +32,7 @@ class SiswaController extends Controller
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
-      'nis' => 'required|size:9',
+      'nis' => 'required|numeric|size:9|unique:siswa',
       'kelas' => 'required|not_in:kelas',
       'jenis_kelamin' => 'required',
       'agama' => 'required|not_in:agama',
@@ -82,7 +82,7 @@ class SiswaController extends Controller
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
-      'nis' => 'required|size:9',
+      'nis' => 'required|numeric|size:9|unique:siswa',
       'kelas' => 'required',
       'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',

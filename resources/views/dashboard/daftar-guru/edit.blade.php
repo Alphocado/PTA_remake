@@ -1,7 +1,7 @@
 @extends('dashboard/layouts/template')
 @section('container')
 
-  <h1 class="mt-5">ini adalah guru edit</h1>
+  <h1 class="mt-5">Halaman guru edit</h1>
 
   <form action="/daftar-guru/{{ $guru->id }}" method="post">
     @method('put')

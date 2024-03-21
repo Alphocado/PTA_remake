@@ -24,7 +24,7 @@ class UserController extends Controller
   {
     $validateData = $request->validate([
       'name' => 'required|max:255',
-      'nis' => 'required|size:9',
+      'nis' => 'required|size:9|numeric|unique.users',
       'email' => 'required|email',
       'role' => 'required',
       'password' => 'required',
@@ -39,7 +39,7 @@ class UserController extends Controller
       'title' => 'User',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'user' => User::select('name', 'nis')->where('nis', $id)->first()
+      'user' => User::select('name', 'nis')->where('id', $id)->first()
     ]);
   }
 
@@ -47,7 +47,7 @@ class UserController extends Controller
   {
     $validateData = $request->validate([
       'name' => 'required|max:255',
-      'nis' => 'required|size:9',
+      'nis' => 'required|size:9|numeric|unique:guru',
       'role' => 'required|in:1,2',
     ]);
     $guru = [

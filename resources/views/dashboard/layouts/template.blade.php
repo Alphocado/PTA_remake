@@ -3,7 +3,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Request;
 ?>
 @include('dashboard/layouts/header')
-<body>
+<body style="background-color: #FEFBF6">
 @include('dashboard/layouts/svg')
 @include('dashboard/layouts/navbar')
 <div class="container-fluid">

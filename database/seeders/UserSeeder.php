@@ -15,18 +15,10 @@ class UserSeeder extends Seeder
   {
     User::create([
       'name' => 'admin',
-      'nis' => '3',
+      'nis' => '123456789',
       'email' => 'admin@gmail.com',
       'role' => '3',
       'password' => 'admin'
-    ]);
-
-    User::create([
-      'name' => 'mod',
-      'nis' => '2',
-      'email' => 'mod@gmail.com',
-      'role' => '2',
-      'password' => 'mod'
     ]);
   }
 }

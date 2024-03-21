@@ -20,7 +20,7 @@
 <form action="/absensi" method="post">
   @csrf
   <div class="mb-3 mt-3 d-flex justify-content-between align-items-center">
-    <h1>Absensi</h1>
+    <h1>Halaman Absensi</h1>
     <a href="/data-absen" class="btn btn-secondary fs-5 px-4 d-flex align-items-center">List Absen</a>
   </div>
   <input type="hidden" value="{{ auth()->user()->nis }}" name="guru">
@@ -48,16 +48,16 @@
   </div>
 
   {{-- list murid --}}
-  <div class="table-responsive mb-3 tabel">
+  <div class="table-responsive-md mb-3">
     <table class="table">
-      <thead class="table-white table-striped-columns">
+      <thead class="table-secondary table-striped-columns">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nama</th>
           <th colspan="4" scope="col" class="text-center">Absen</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider" id="absen-table">  
+      <tbody id="absen-table">  
         <tr>
           <th scope="row">0</th>
           <td></td>

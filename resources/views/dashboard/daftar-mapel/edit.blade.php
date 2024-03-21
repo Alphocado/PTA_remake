@@ -1,7 +1,7 @@
 @extends('dashboard/layouts/template')
 @section('container')
 
-  <h1 class="mt-5">ini adalah mapel edit</h1>
+  <h1 class="mt-5">Halaman edit mata pelajaran</h1>
 
   <form action="/daftar-mapel/{{ $mapel->id }}" method="post">
     @method('put')
