@@ -97,6 +97,6 @@
 <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
 <link href="{{ asset('fonts/Poppins/poppins.css') }}" rel="stylesheet">
-<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 </head>

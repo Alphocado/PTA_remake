@@ -10,40 +10,47 @@
   </form> --}}
 
   <div class="mb-3">
-    <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#user">Tambah Akun Moderator
+    <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#user">
+      <i class="fa-solid fa-plus"></i> Tambah Akun Moderator
     </button>
   </div>
   
   
   {{-- list murid --}}
-  <div class="table-responsive-md">
-    <table class="table">
-      <thead class="table-secondary table-striped-columns">
-        <tr>
-          <th scope="col text-cente">#</th>
+  <div class="table-responsive-md mb-3">
+    <table class="table table-striped table-hover table-bordered table-bongkar">
+      <thead style="--bs-table-bg: #ECB159;">
+        <tr class="fs-5">
+          <th scope="col">#</th>
           <th scope="col">Nama</th>
-          <th scope="col">NIS</th>
-          <th scope="col">Email</th>
-          <th scope="col">Role</th>
+          <th scope="col" class="column-hapus">NIS</th>
+          <th scope="col" class="column-hapus">Email</th>
+          <th scope="col" class="column-hapus">Role</th>
           <th scope="col">Opsi</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($user as $s)
-        <tr>
+        <tr class="fs-5">
           <th scope="row">{{ $loop->iteration }}</th>
           <td>{{ $s->name }}</td>
-          <td>{{ $s->nis }}</td>
-          <td>{{ $s->email }}</td>
-          <td>{{ $s->role }}</td>
+          <td class="column-hapus">{{ $s->nis }}</td>
+          <td class="column-hapus">{{ $s->email }}</td>
+          <td class="column-hapus">{{ $s->role }}</td>
           <td>
-            <a href="/daftar-user/{{ $s->id }}" class="text-decoration-none badge text-bg-primary">Detail</a>
-            <a href="/daftar-user/{{ $s->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
+            <a href="/daftar-user/{{ $s->id }}" class="text-decoration-none btn btn-primary fs-6">
+              <i class="fa-regular fa-circle-info"></i>
+            </a>
+            <a href="/daftar-user/{{ $s->id }}/edit" class="text-decoration-none btn btn-warning fs-6">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </a>
             <form action="/daftar-user/{{ $s->id }}" class="d-inline" method="post">
               @method('delete')
               @csrf
               <input type="hidden" value="{{ $s->nis }}" name="nis">
-              <button class="border-0 text-decoration-none badge text-bg-danger" onclick="return confirm('Are you sure?')">Hapus</button>
+              <button class="border-0 text-decoration-none btn btn-danger fs-6" onclick="return confirm('Are you sure?')">
+                <i class="fa-regular fa-trash"></i>
+              </button>
             </form>
           </td>
         </tr>

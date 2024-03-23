@@ -24,7 +24,7 @@ $(document).ready(function() {
   // Tanggl buat dari dashboard.absensi.detail
   $('#tanggal-select').on('change', function(){
     let tanggal = $(this).val();
-    let kelas = $('[name="id_kelas"]').val();
+    let kelas = $('[name="kelas"]').val();
     $.ajax({
       url: '/tanggal-select',
       type: 'POST',

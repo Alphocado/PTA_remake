@@ -1,5 +1,7 @@
 body, * {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .login-body {
@@ -41,4 +43,15 @@ body, * {
 .btn-default:hover {
   color: #f4eee0;
   background-color: #393646;
+}
+
+.table-bongkar th,
+.table-bongkar td {
+  vertical-align: middle;
+}
+
+@media (max-width: 992px) {
+  table .column-hapus {
+    display: none !important;
+  }
 }

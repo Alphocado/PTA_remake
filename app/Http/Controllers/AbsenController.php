@@ -32,6 +32,7 @@ class AbsenController extends Controller
 
   public function store(Request $request)
   {
+    dd($request);
     $absenValues = [];
     $tgl_buat = date('Y-m-d');
     $jam_buat = date('H:i:s');

@@ -12,7 +12,7 @@
 
   {{-- add --}}
   <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#kelas">
-    Tambah Kelas
+    <i class="fa-solid fa-plus"></i> Tambah Kelas
   </button>
   
   
@@ -22,7 +22,9 @@
       <form class="input-group mb-3" action="/daftar-kelas">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Cari kelas" name="search" value="{{ request('search') }}">
-          <button class="input-group-text" type="submit" id="basic-addon2">Cari</button>
+          <button class="input-group-text btn btn-primary px-4" type="submit" id="basic-addon2">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </form>
     </div>
@@ -31,28 +33,33 @@
       <div class="col">
   
         {{-- list murid --}}
-        <div class="table-responsive-md">
-          <table class="table">
-            <thead class="table-secondary table-striped-columns">
-              <tr>
-                <th scope="col text-cente">#</th>
+        <div class="table-responsive-md mb-3">
+          <table class="table table-striped table-hover table-bordered table-bongkar">
+            <thead style="--bs-table-bg: #ECB159;">
+              <tr class="fs-5">
+                <th scope="col">#</th>
                 <th scope="col">Kelas</th>
-                <th scope="col">Wali Kelas</th>
+                <th scope="col" class="column-hapus">Wali Kelas</th>
                 <th scope="col">Opsi</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($kelas as $k)
-              <tr>
+              <tr class="fs-5">
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $k->nama }}</td>
-                <td>{{ $k->wali_kelas->nama }}</td>
+                <td class="column-hapus">{{ $k->wali_kelas->nama }}</td>
                 <td>
-                  <a href="/daftar-kelas/{{ $k->id }}/edit" class="text-decoration-none badge text-bg-warning">Edit</a>
+                  <a href="/daftar-kelas/{{ $k->id }}/edit" class="text-decoration-none btn btn-warning fs-6">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </a>
+                  
                   <form action="/daftar-kelas/{{ $k->id }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
-                    <button class="badge text-bg-danger border-0" onclick="return confir('Yakin?')">Hapus</button>
+                    <button class="border-0 text-decoration-none btn btn-danger fs-6" onclick="return confir('Yakin?')">
+                      <i class="fa-regular fa-trash"></i>
+                    </button>
                   </form>
                 </td>
               </tr>

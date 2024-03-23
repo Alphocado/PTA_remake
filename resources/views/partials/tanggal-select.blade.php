@@ -1,12 +1,15 @@
 
 <input type="hidden" value="{{ $tgl_buat }}" name="tgl_buat">
 <input type="hidden" value="{{ $kelas }}" name="id_tbl_kelas">
+<input type="hidden" value="{{ $jam_buat }}" name="jam_buat">
 <select class="form-select" id="mapel-select" name="mata_pelajaran" required>
   <option value="mapel" disabled selected>Mata Pelajaran</option>
   @foreach ($mapel as $m)
   <option value="{{ $m->id }}">{{ $m->nama }}</option>
   @endforeach
 </select>
+
+<button type="button" class="mt-3 btn btn-primary px-4" id="edit">Edit</button>
 
 <script>
   $('#mapel-select').on('change', function(){
