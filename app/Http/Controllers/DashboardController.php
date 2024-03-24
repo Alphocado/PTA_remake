@@ -35,7 +35,9 @@ class DashboardController extends Controller
         return view('dashboard/admin', [
           'title' => 'Dashboard',
           'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-          'sub_menus' => SubMenu::select('role', 'name')->get()
+          'sub_menus' => SubMenu::select('role', 'name')->get(),
+
+          'guru' => Guru::where('nis', $nis),
         ]);
       } else {
         return redirect('/dashboard')->with('warning', 'Tidak bisa edit akun yang bukan milik mu');
