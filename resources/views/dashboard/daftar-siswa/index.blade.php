@@ -3,11 +3,6 @@
 
   <h1 class="mt-5">Data-data siswa</h1>
 
-  @if(session()->has('success'))
-  <div class="alert alert-success col-lg-8" role="alert">
-    {{ session('success') }}
-  </div>
-  @endif
 
 {{-- add --}}
   <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#siswa">

@@ -30,6 +30,7 @@
       </tr>
     </thead>
     <tbody>
+    @if(!$absen->isEmpty())
       @foreach ($absen as $a)
       <tr>
         <td>{{ $loop->iteration }}</td>
@@ -40,6 +41,11 @@
         <td>{{ $a->alpha_count }}</td>
       </tr>
       @endforeach
+    @else
+      <tr>
+        <td colspan="6">belum ada absen</td>
+      </tr>
+    @endif
     </tbody>
   </table>
 </div>

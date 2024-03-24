@@ -9,11 +9,11 @@
     <button class="input-group-text" id="basic-addon2">Cari</button>
   </form> --}}
 
-  <div class="mb-3">
+  {{-- <div class="mb-3">
     <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#user">
       <i class="fa-solid fa-plus"></i> Tambah Akun Moderator
     </button>
-  </div>
+  </div> --}}
   
   
   {{-- list murid --}}

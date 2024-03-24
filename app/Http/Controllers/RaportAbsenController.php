@@ -26,6 +26,7 @@ class RaportAbsenController extends Controller
       ->groupBy('siswa')
       ->get();
 
+
     return view('dashboard/raport/show', [
       'title' => 'Raport Absensi',
       'absen' => $absen,

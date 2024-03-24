@@ -1,18 +1,37 @@
 @extends('dashboard/layouts/template')
 @section('container')
-  <h1 class="my-4">Halaman Dashboard</h1>
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{ asset('img/profile.png') }}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ auth()->user()->name }}</h5>
-          <p class="card-text">{{ auth()->user()->nis }}</p>
-          <p class="card-text"><small class="text-body-secondary">Hi {{ auth()->user()->name }}</small></p>
-        </div>
+
+
+
+<h1 class="my-4">Dashboard</h1>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      <img src="{{ asset('img/profile.png') }}" class="img-fluid rounded-start" alt="Profile Image" width="200px">
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <h1 class="card-title mb-3">{{ $guru->nama }}</h1>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item">
+            <strong>NIS:</strong> {{ $guru->nis }}
+          </li>
+          <li class="list-group-item">
+            <strong>Mata Pelajaran:</strong> {{ $guru->mata_pelajaran }}
+          </li>
+          <li class="list-group-item">
+            <strong>Jenis Kelamin:</strong> {{ $guru->jenis_kelamin }}
+          </li>
+          <li class="list-group-item">
+            <strong>Agama:</strong> {{ $guru->agama }}
+          </li>
+          <li class="list-group-item">
+            <strong>Alamat:</strong> {{ $guru->alamat }}
+          </li>
+        </ul>
+        <a href="/dashboard/{{ $guru->nis }}/edit" class="btn btn-primary">Edit Profile</a>
       </div>
     </div>
   </div>
+</div>
 @endsection

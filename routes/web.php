@@ -24,7 +24,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 
 Route::middleware(['check-role1'])->group(function () {
-  Route::get('/dashboard', [DashboardController::class, 'index']);
+  Route::resource('/dashboard', DashboardController::class);
   Route::resource('/absensi', AbsenController::class);
   Route::resource('/data-absen', DataAbsenController::class);
   Route::resource('/raport-absen', RaportAbsenController::class);
@@ -36,11 +36,9 @@ Route::middleware(['check-role2'])->group(function () {
   Route::resource('/daftar-guru', GuruController::class);
   Route::resource('/daftar-kelas', KelasController::class);
   Route::resource('/daftar-mapel', MapelController::class);
-});
-
-Route::middleware(['check-role3'])->group(function () {
   Route::resource('/daftar-user', UserController::class);
 });
+
 
 Route::post('/absen-siswa/{id}', [AbsenController::class, 'getSiswa']);
 Route::post('/data-absen/{id}', [DataAbsenController::class, 'getData']);
