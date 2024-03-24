@@ -1,7 +1,6 @@
 
 <input type="hidden" value="{{ $tgl_buat }}" name="tgl_buat">
 <input type="hidden" value="{{ $kelas }}" name="id_tbl_kelas">
-<input type="hidden" value="{{ $jam_buat }}" name="jam_buat">
 <select class="form-select" id="mapel-select" name="mata_pelajaran" required>
   <option value="mapel" disabled selected>Mata Pelajaran</option>
   @foreach ($mapel as $m)

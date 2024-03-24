@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\DataAbsenController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\RaportAbsenController;
 use App\Http\Controllers\SiswaReadController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
@@ -26,6 +27,7 @@ Route::middleware(['check-role1'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index']);
   Route::resource('/absensi', AbsenController::class);
   Route::resource('/data-absen', DataAbsenController::class);
+  Route::resource('/raport-absen', RaportAbsenController::class);
   Route::resource('/siswa', SiswaReadController::class);
 });
 

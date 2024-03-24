@@ -35,6 +35,13 @@ class MenuSeeder extends Seeder
     ]);
 
     Menu::create([
+      'name' => 'Report Absen',
+      'logo' => 'fa-solid fa-flag',
+      'role' => 1,
+      'slug' => 'raport-absen',
+    ]);
+
+    Menu::create([
       'name' => 'Siswa',
       'logo' => 'fa-solid fa-people-simple',
       'role' => 1,

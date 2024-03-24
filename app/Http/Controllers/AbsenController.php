@@ -32,10 +32,8 @@ class AbsenController extends Controller
 
   public function store(Request $request)
   {
-    dd($request);
     $absenValues = [];
     $tgl_buat = date('Y-m-d');
-    $jam_buat = date('H:i:s');
     foreach ($request->all() as $key => $value) {
       if (strpos($key, 'absen-') === 0) {
         $id = substr($key, strlen('absen-'));
@@ -50,8 +48,25 @@ class AbsenController extends Controller
     ]);
 
     foreach ($absenValues as $id => $absen) {
-      $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id, 'tgl_buat' => $tgl_buat, 'jam_buat' => $jam_buat]);
-      Absen::create($absenData);
+      // Check if record with the same criteria already exists
+      $existingAbsen = Absen::where('siswa', $id)
+        ->where('mata_pelajaran', $validatedData['mata_pelajaran'])
+        ->where('kelas', $validatedData['kelas'])
+        ->where('tgl_buat', $tgl_buat)
+        ->first();
+
+      if ($existingAbsen) {
+        // If record exists, update it
+        $existingAbsen->where('siswa', $id)
+          ->where('mata_pelajaran', $validatedData['mata_pelajaran'])
+          ->where('kelas', $validatedData['kelas'])
+          ->where('tgl_buat', $tgl_buat)
+          ->update(['absen' => $absen]);
+      } else {
+        // If record doesn't exist, create a new entry
+        $absenData = array_merge($validatedData, ['absen' => $absen, 'siswa' => $id, 'tgl_buat' => $tgl_buat]);
+        Absen::create($absenData);
+      }
     }
 
     return redirect('/absensi')->with('success', 'Data baru telah ditambahkan');
