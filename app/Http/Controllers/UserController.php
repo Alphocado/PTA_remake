@@ -15,7 +15,6 @@ class UserController extends Controller
     return view('dashboard/daftar-user/index', [
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'user' => User::select('name', 'nis', 'email', 'role', 'id')->where('role', '!=', 2)->get()
     ]);
   }
@@ -38,7 +37,6 @@ class UserController extends Controller
   //   return view('dashboard/daftar-user/show', [
   //     'title' => 'User',
   //     'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-  //     'sub_menus' => SubMenu::select('role', 'name')->get(),
   //     'user' => User::select('name', 'nis')->where('id', $id)->first()
   //   ]);
   // }
@@ -69,7 +67,6 @@ class UserController extends Controller
     return view('dashboard/daftar-user/edit', [
       'title' => 'User',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'user' => User::select('id', 'name', 'nis', 'role')->where('id', $id)->first()
     ]);
   }

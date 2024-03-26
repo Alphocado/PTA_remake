@@ -15,7 +15,6 @@ class RaportAbsenController extends Controller
     return view('dashboard/raport/index', [
       'title' => 'Raport Absensi',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'kelas' => Kelas::select('id', 'nama')->get(),
     ]);
   }
@@ -32,7 +31,6 @@ class RaportAbsenController extends Controller
       'absen' => $absen,
       'kelas' => Kelas::where('id', $id)->first(),
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
     ]);
   }
 }

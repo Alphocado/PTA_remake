@@ -19,16 +19,25 @@
     </div>
     <input type="hidden" value="{{ auth()->user()->nis }}" name="guru">
 
+    <div class="row mb-3">
+      <div class="col d-flex align-items-center gap-2">
+        <input type="checkbox" id="pengganti">
+        <label for="pengganti">guru pengganti?</label>
+      </div>
+    </div>
     <div class="row">
+      <input type="hidden" value="{{ $guru->mapel->id }}" name="mata_pelajaran" id="noPengganti">
 
-      <div class="col-md-6 mb-3">
-        <select class="form-select" name="mata_pelajaran" required>
+
+      <div class="col-md-6 mb-3 d-none" id="yesPengganti">
+        <select class="form-select" required>
           <option value="mapel" disabled selected>Mata Pelajaran</option>
           @foreach ($mapel as $m)
           <option value="{{ $m->id }}">{{ $m->nama }}</option>
           @endforeach
         </select>
       </div>
+
       
       <div class="col-md-6 mb-3">
         <select class="form-select" id="kelas-select" name="kelas" required>
@@ -103,6 +112,25 @@
           $(".check-all").prop('checked', false);
         })
       });
+    })
+
+    $('#pengganti').change(function (){
+      let iya = $('#yesPengganti');
+      let tidak = $('#noPengganti');
+      
+      if ($(this).prop('checked')) {
+        iya.removeClass('d-none');
+        tidak.addClass('d-none');
+        // Ubah nilai 'name' pada elemen select menjadi 'mata_pelajaran'
+        iya.find('select').attr('name', 'mata_pelajaran');
+        tidak.find('input[type="hidden"]').attr('name', ''); // Hapus name pada input hidden jika ada
+      } else {
+        iya.addClass('d-none');
+        tidak.removeClass('d-none');
+        // Ubah nilai 'name' pada elemen select menjadi kosong
+        iya.find('select').attr('name', '');
+        tidak.find('input[type="hidden"]').attr('name', 'mata_pelajaran'); // Berikan name pada input hidden
+      }
     })
   });
   </script>

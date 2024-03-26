@@ -18,7 +18,6 @@ class GuruController extends Controller
     return view('dashboard/daftar-guru/index', [
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'guru' => Guru::select('guru.*', 'mapel.nama as kelas_nama')
         ->leftJoin('mapel', 'guru.mata_pelajaran', '=', 'mapel.id')->filter(request(['search']))->paginate(10),
 
@@ -72,7 +71,6 @@ class GuruController extends Controller
     return view('dashboard/daftar-guru/show', [
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'guru' => Guru::where('nis', $nis)->first(),
     ]);
   }
@@ -85,7 +83,6 @@ class GuruController extends Controller
     return view('dashboard/daftar-guru/edit', [
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'guru' => Guru::where('nis', $nis)->first(),
       'mapel' => Mapel::select('id', 'nama')->get(),
     ]);
@@ -104,7 +101,6 @@ class GuruController extends Controller
       'alamat' => 'required|string|max:255',
       'tgl_lahir' => 'required|date',
       'image' => 'image|file|max:1024',
-      'oldImage' => 'image|file|max:1024',
       'pw' => 'nullable|string',
     ]);
     $user = User::where('nis', $nis)->first();
@@ -116,35 +112,32 @@ class GuruController extends Controller
       }
       $rules['image'] = $request->file('image')->store('profile');
     } else {
-      $rules['image'] = $rules['oldImage'];
+      $rules['image'] = $request->oldImage;
     }
 
     if (!empty($rules['pw'])) {
-      if (!Hash::check($rules['pw'], $user->password)) {
-        return redirect()->back()->with('warning', 'Password lama salah');
-      }
       $pass = Hash::make($rules['pw']);
     } else {
       $pass = $user->password;
     }
-    // try {
-    $guru->update([
-      'nama' => $rules['nama'],
-      'mata_pelajaran' => $rules['mata_pelajaran'],
-      'jenis_kelamin' => $rules['jenis_kelamin'],
-      'agama' => $rules['agama'],
-      'alamat' => $rules['alamat'],
-      'tgl_lahir' => $rules['tgl_lahir'],
-      'image' => $rules['image']
-    ]);
-    $user->update([
-      'name' => $rules['nama'],
-      'password' => $pass,
-    ]);
-    //   return redirect('/daftar-guru')->with('success', 'Edit berhasil');
-    // } catch (\Exception $e) {
-    //   return redirect('/daftar-guru')->with('error', 'Gagal edit, ada yang salah');
-    // }
+    try {
+      $guru->update([
+        'nama' => $rules['nama'],
+        'mata_pelajaran' => $rules['mata_pelajaran'],
+        'jenis_kelamin' => $rules['jenis_kelamin'],
+        'agama' => $rules['agama'],
+        'alamat' => $rules['alamat'],
+        'tgl_lahir' => $rules['tgl_lahir'],
+        'image' => $rules['image']
+      ]);
+      $user->update([
+        'name' => $rules['nama'],
+        'password' => $pass,
+      ]);
+      return redirect('/daftar-guru')->with('success', 'Edit berhasil');
+    } catch (\Exception $e) {
+      return redirect('/daftar-guru')->with('error', 'Gagal edit, ada yang salah');
+    }
   }
 
   /**

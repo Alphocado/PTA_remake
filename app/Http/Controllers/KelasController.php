@@ -21,7 +21,6 @@ class KelasController extends Controller
     return view('dashboard/daftar-kelas/index', [
       'title' => 'Kelas',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'kelas' => $kelas,
       'guru' => Guru::select('id', 'nama')->get()
     ]);
@@ -50,7 +49,6 @@ class KelasController extends Controller
     return view('dashboard/daftar-kelas/edit', [
       'title' => 'Edit Kelas',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'kelas' => Kelas::select('nama', 'id_wali_kelas', 'id')->first(),
       'guru' => Guru::select('id', 'nama')->get()
     ]);

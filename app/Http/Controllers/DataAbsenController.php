@@ -47,7 +47,6 @@ class DataAbsenController extends Controller
     return view('dashboard/absensi/show', [
       'title' => 'Absensi',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'kelas' => Kelas::select('id', 'nama')->get(),
     ]);
   }
@@ -61,7 +60,6 @@ class DataAbsenController extends Controller
       return view('dashboard.absensi.detail', [
         'title' => 'Absensi',
         'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-        'sub_menus' => SubMenu::select('role', 'name')->get(),
         'kelas' => Kelas::where('id', $absensiCheck->kelas)->select('id', 'nama')->first(),
         'mapel' => Mapel::all(),
         'tgl_buat' => $tgl_buat,
@@ -70,7 +68,6 @@ class DataAbsenController extends Controller
       return view('dashboard.absensi.error', [
         'title' => 'Absensi',
         'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-        'sub_menus' => SubMenu::select('role', 'name')->get(),
         'kelas' => Kelas::where('id', $id)->select('nama')->first()
       ]);
     }

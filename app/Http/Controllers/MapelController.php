@@ -25,7 +25,6 @@ class MapelController extends Controller
     return view('dashboard/daftar-mapel/index', [
       'title' => 'Daftar Mapel',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'mapel' => $mapel,
     ]);
   }
@@ -51,7 +50,6 @@ class MapelController extends Controller
     return view('dashboard/daftar-mapel/edit', [
       'title' => 'Edit Mapel',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'mapel' => Mapel::select('nama', 'id')->where('id', $id)->first()
     ]);
   }

@@ -13,13 +13,13 @@
       {{-- image --}}
       <div class="d-flex justify-content-center flex-column">
         <div class="d-flex justify-content-center">
-          <input type="hidden" name="oldImage" value="{{ $guru->image }}">
           @if($guru->image)
-            <img src="{{ asset('storage/'.$guru->image) }}" class="img-preview img-fluid" width="250px">
+          <img src="{{ asset('storage/'.$guru->image) }}" class="img-preview img-fluid" width="250px">
           @else
-            <img src="{{ asset('profile/profile.png') }}" class="img-preview img-fluid" width="250px">
+          <img src="{{ asset('profile/profile.png') }}" class="img-preview img-fluid" width="250px">
           @endif 
         </div>
+        <input type="hidden" name="oldImage" value="{{ $guru->image }}">
         <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()" width="250px">
 
       </div>
@@ -143,7 +143,7 @@
                 <label for="oldpw" class="col-form-label fw-bold">Ubah Password</label>
               </div>
               <div class="col-4">
-                <input type="password" id="oldpw" name="oldpw" class="form-control @error('pw') is-invalid @enderror">
+                <input type="password" id="pw" name="pw" class="form-control @error('pw') is-invalid @enderror">
                 @error('oldpw')
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

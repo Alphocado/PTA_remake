@@ -19,14 +19,12 @@ class DashboardController extends Controller
       return view('dashboard/index', [
         'title' => 'Dashboard',
         'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-        'sub_menus' => SubMenu::select('role', 'name')->get(),
         'guru' => Guru::where('nis', auth()->user()->nis)->first(),
       ]);
     } else {
       return view('dashboard/admin', [
         'title' => 'Dashboard',
         'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-        'sub_menus' => SubMenu::select('role', 'name')->get(),
         // 'guru' => Guru::where('nis', auth()->user()->nis)->first(),
       ]);
     }
@@ -42,7 +40,6 @@ class DashboardController extends Controller
         return view('dashboard/edit', [
           'title' => 'Dashboard',
           'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-          'sub_menus' => SubMenu::select('role', 'name')->get(),
           'guru' => $guru,
           'mapel' => Mapel::all(),
           // 'imageName' => $imageName

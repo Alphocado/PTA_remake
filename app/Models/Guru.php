@@ -27,6 +27,6 @@ class Guru extends Model
 
   public function mapel()
   {
-    return $this->belongsTo(Mapel::class, 'mata_pelajaran')->select('nama');
+    return $this->belongsTo(Mapel::class, 'mata_pelajaran')->select('nama', 'id');
   }
 }

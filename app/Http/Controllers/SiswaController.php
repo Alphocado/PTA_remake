@@ -19,7 +19,6 @@ class SiswaController extends Controller
     return view('dashboard/daftar-siswa/index', [
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'siswa' => Siswa::select('siswa.*', 'kelas.nama as kelas_nama')
         ->leftJoin('kelas', 'siswa.kelas', '=', 'kelas.id')->filter(request(['search']))->paginate(10),
       'kelas' => Kelas::select('id', 'nama')->get()
@@ -56,7 +55,6 @@ class SiswaController extends Controller
     return view('dashboard/daftar-siswa/show', [
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'siswa' => $siswa,
       'kelas' => $kelas,
     ]);
@@ -70,7 +68,6 @@ class SiswaController extends Controller
     return view('dashboard/daftar-siswa/edit', [
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'siswa' => Siswa::where('nis', $nis)->first(),
       'kelas' => Kelas::select('id', 'nama')->get(),
     ]);

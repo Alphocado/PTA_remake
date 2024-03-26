@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
-use App\Models\SubMenu;
 use App\Models\Mapel;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Absen;
+use App\Models\Guru;
 
 class AbsenController extends Controller
 {
@@ -24,9 +24,9 @@ class AbsenController extends Controller
     return view('dashboard/absensi/index', [
       'title' => 'Absensi',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'sub_menus' => SubMenu::select('role', 'name')->get(),
       'kelas' => Kelas::select('id', 'nama')->get(),
-      'mapel' => Mapel::select('id', 'nama')->get()
+      'mapel' => Mapel::select('id', 'nama')->get(),
+      'guru' => Guru::where('nis', auth()->user()->nis)->first(),
     ]);
   }
 
@@ -43,7 +43,7 @@ class AbsenController extends Controller
 
     $validatedData = $request->validate([
       'guru' => 'required',
-      'mata_pelajaran' => 'required|not_in:mapel',
+      'mata_pelajaran' => 'required',
       'kelas' => 'required|not_in:kelas',
     ]);
 
