@@ -7,7 +7,11 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-3 d-flex justify-content-center align-items-center">
-      <img src="{{ asset('img/profile.png') }}" class="img-fluid rounded-start" alt="Profile Image" width="200px">
+      @if($guru->image)
+        <img src="{{ asset('storage/'.$guru->image) }}" class="img-preview img-fluid" width="200px">
+      @else
+        <img src="{{ asset('profile/profile.png') }}" class="img-preview img-fluid" width="200px">
+      @endif 
     </div>
     <div class="col-md-9">
       <div class="card-body">
@@ -17,7 +21,7 @@
             <strong>NIS:</strong> {{ $guru->nis }}
           </li>
           <li class="list-group-item">
-            <strong>Mata Pelajaran:</strong> {{ $guru->mata_pelajaran }}
+            <strong>Mata Pelajaran:</strong> {{ $guru->mapel->nama }}
           </li>
           <li class="list-group-item">
             <strong>Jenis Kelamin:</strong> {{ $guru->jenis_kelamin }}
