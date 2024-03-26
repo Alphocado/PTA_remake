@@ -1,22 +1,43 @@
 @extends('dashboard/layouts/template')
 @section('container')
 <h1 class="my-4">Deskripsi siswa</h1>
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0 d-flex align-items-center">
-    <div class="col-md-4">
-      <img src="{{ asset('img/profile.png') }}" class="img-fluid rounded-start">
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      @if($siswa->image)
+        <img src="{{ asset('storage/'.$siswa->image) }}" class="img-preview img-fluid" width="200px">
+      @else
+        <img src="{{ asset('profile/profile.png') }}" class="img-preview img-fluid" width="200px">
+      @endif 
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div class="card-body">
-        <h5 class="card-title">{{ $siswa->nama }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ $kelas->nama }}</h6>
-        <p class="card-text">Jenis Kelamin : {{ $siswa->jenis_kelamin }}</p>
-        <p class="card-text">Agama : {{ $siswa->agama }}</p>
-        <p class="card-text">Alamat : {{ $siswa->alamat }}</p>
-        <p class="card-text">Tanggal Lahir : {{ $siswa->tgl_lahir }}</p>
+        <h1 class="card-title mb-3">{{ $siswa->nama }}</h1>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item">
+            <strong>NIS:</strong> {{ $siswa->nis }}
+          </li>
+          <li class="list-group-item">
+            <strong>Kelas:</strong> {{ $siswa->nama_kelas->nama }}
+          </li>
+          <li class="list-group-item">
+            <strong>Jenis Kelamin:</strong> {{ $siswa->jenis_kelamin }}
+          </li>
+          <li class="list-group-item">
+            <strong>Agama:</strong> {{ $siswa->agama }}
+          </li>
+          <li class="list-group-item">
+            <strong>Alamat:</strong> {{ $siswa->alamat }}
+          </li>
+          <li class="list-group-item">
+            <strong>Tanggal Lahir:</strong> {{ $siswa->tgl_lahir }}
+          </li>
+        </ul>
         <a href="/daftar-siswa" class="btn btn-secondary">Kembali</a>
       </div>
     </div>
   </div>
 </div>
+
 @endsection

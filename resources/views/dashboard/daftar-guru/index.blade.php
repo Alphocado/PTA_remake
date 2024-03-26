@@ -46,16 +46,15 @@
                   <td class="column-hapus">{{ $g->mapel->nama }}</td>
                   <td class="column-hapus">{{ $g->nis }}</td>
                   <td>
-                    <a href="/daftar-guru/{{ $g->id }}" class="text-decoration-none btn btn-primary fs-6">                    
+                    <a href="/daftar-guru/{{ $g->nis }}" class="text-decoration-none btn btn-primary fs-6">                    
                       <i class="fa-regular fa-circle-info"></i>
                     </a>
-                    <a href="/daftar-guru/{{ $g->id }}/edit" class="text-decoration-none btn btn-warning fs-6">
+                    <a href="/daftar-guru/{{ $g->nis }}/edit" class="text-decoration-none btn btn-warning fs-6">
                       <i class="fa-regular fa-pen-to-square"></i>
                     </a>
-                    <form action="/daftar-guru/{{ $g->id }}" class="d-inline" method="post">
+                    <form action="/daftar-guru/{{ $g->nis }}" class="d-inline" method="post">
                       @method('delete')
                       @csrf
-                      <input type="hidden" value="{{ $g->nis }}" name="nis">
                       <button class="border-0 text-decoration-none btn btn-danger fs-6" onclick="return confirm('Are you sure?')">                      
                         <i class="fa-regular fa-trash"></i>
                       </button>

@@ -1,23 +1,39 @@
 @extends('dashboard/layouts/template')
 @section('container')
 <h1 class="my-4">Deskripsi guru</h1>
-<div class="row">
-  <div class="col-2">
-    <img src="{{ asset('img/profile.png') }}" class="img-thumbnail">
-  </div>
-  <div class="col-4">
-    <div class="card" style="width: 18rem;">
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      @if($guru->image)
+        <img src="{{ asset('storage/'.$guru->image) }}" class="img-preview img-fluid" width="200px">
+      @else
+        <img src="{{ asset('profile/profile.png') }}" class="img-preview img-fluid" width="200px">
+      @endif 
+    </div>
+    <div class="col-md-9">
       <div class="card-body">
-        <h5 class="card-title">{{ $guru->nama }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ $guru->mapel->nama }}</h6>
-        <p class="card-text">Jenis Kelamin : {{ $guru->jenis_kelamin }}</p>
-        <p class="card-text">Agama : {{ $guru->agama }}</p>
-        <p class="card-text">Alamat : {{ $guru->alamat }}</p>
-        <p class="card-text">Tanggal Lahir : {{ $guru->tgl_lahir }}</p>
+        <h1 class="card-title mb-3">{{ $guru->nama }}</h1>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item">
+            <strong>NIS:</strong> {{ $guru->nis }}
+          </li>
+          <li class="list-group-item">
+            <strong>Mata Pelajaran:</strong> {{ $guru->mapel->nama }}
+          </li>
+          <li class="list-group-item">
+            <strong>Jenis Kelamin:</strong> {{ $guru->jenis_kelamin }}
+          </li>
+          <li class="list-group-item">
+            <strong>Agama:</strong> {{ $guru->agama }}
+          </li>
+          <li class="list-group-item">
+            <strong>Alamat:</strong> {{ $guru->alamat }}
+          </li>
+        </ul>
         <a href="/daftar-guru" class="btn btn-secondary">Kembali</a>
+        <a href="/daftar-guru/{{ $guru->nis }}/edit" class="btn btn-primary">Edit Profile</a>
       </div>
     </div>
-
   </div>
 </div>
 @endsection

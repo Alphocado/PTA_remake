@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Guru;
 use App\Models\SubMenu;
 use App\Models\Mapel;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller

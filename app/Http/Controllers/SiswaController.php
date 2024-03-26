@@ -49,7 +49,7 @@ class SiswaController extends Controller
    */
   public function show(string $id)
   {
-    $siswa = Siswa::select('nama', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir', 'kelas')->where('id', $id)->first();
+    $siswa = Siswa::select('nama', 'nis', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir', 'kelas')->where('id', $id)->first();
     $kelas = Kelas::select('nama')->where('id', $siswa->kelas)->first();
 
     return view('dashboard/daftar-siswa/show', [
