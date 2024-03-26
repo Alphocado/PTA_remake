@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -32,7 +33,7 @@ class SiswaController extends Controller
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
-      'nis' => 'required|numeric|size:9|unique:siswa',
+      'nis' => 'required|numeric|unique:siswa',
       'kelas' => 'required|not_in:kelas',
       'jenis_kelamin' => 'required',
       'agama' => 'required|not_in:agama',
@@ -47,9 +48,9 @@ class SiswaController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(string $id)
+  public function show(string $nis)
   {
-    $siswa = Siswa::select('nama', 'nis', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir', 'kelas')->where('id', $id)->first();
+    $siswa = Siswa::where('nis', $nis)->first();
     $kelas = Kelas::select('nama')->where('id', $siswa->kelas)->first();
 
     return view('dashboard/daftar-siswa/show', [
@@ -64,13 +65,13 @@ class SiswaController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(string $id)
+  public function edit(string $nis)
   {
     return view('dashboard/daftar-siswa/edit', [
       'title' => 'Guru',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
       'sub_menus' => SubMenu::select('role', 'name')->get(),
-      'siswa' => Siswa::select('id', 'nis', 'nama', 'kelas', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->where('id', $id)->first(),
+      'siswa' => Siswa::where('nis', $nis)->first(),
       'kelas' => Kelas::select('id', 'nama')->get(),
     ]);
   }
@@ -78,27 +79,35 @@ class SiswaController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, string $id)
+  public function update(Request $request, string $nis)
   {
     $validateData = $request->validate([
       'nama' => 'required|max:255',
-      'nis' => 'required|numeric|size:9|unique:siswa',
       'kelas' => 'required',
       'jenis_kelamin' => 'required',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
       'alamat' => 'required|max:255',
-      'tgl_lahir' => 'required|date'
+      'tgl_lahir' => 'required|date',
+      'image' => 'image|file|max:1024',
     ]);
-    Siswa::where('id', $id)->update($validateData);
+
+    if ($request->file('image')) {
+      if ($request->oldImage) {
+        Storage::delete($request->oldImage);
+      }
+      $validateData['image'] = $request->file('image')->store('profile');
+    }
+
+    Siswa::where('nis', $nis)->update($validateData);
     return redirect('/daftar-siswa')->with('success', 'Data siswa berhasil diubah');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(string $id)
+  public function destroy(string $nis)
   {
-    Siswa::destroy($id);
+    Siswa::where('nis', $nis)->delete();
     return redirect('/daftar-siswa')->with('success', 'Data siswa telah dihapus');
   }
 }

@@ -8,7 +8,9 @@
   <form class="row g-0" action="/daftar-guru/{{ $guru->nis }}" method="post" enctype="multipart/form-data">
     @method('put')
     @csrf
+    
     <div class="col-md-3 d-flex justify-content-center align-items-center">
+      {{-- image --}}
       <div class="d-flex justify-content-center flex-column">
         <div class="d-flex justify-content-center">
           <input type="hidden" name="oldImage" value="{{ $guru->image }}">
@@ -19,12 +21,14 @@
           @endif 
         </div>
         <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()" width="250px">
+
       </div>
     </div>
     <div class="col-md-9">
       <div class="card-body">
         <ul class="list-group list-group-flush mb-3">
 
+          {{-- nama --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">
@@ -39,21 +43,7 @@
             </div>
           </li>
 
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-2">
-                <label for="nis" class="col-form-label fw-bold">NIS: </label>
-              </div>
-              <div class="col-10">
-                <input type="text" value="{{ old('nis', $guru->nis) }}" placeholder="nis Baru" name="nis" class="form-control @error('nis') is-invalid @enderror" id="nis">
-                
-                @error('mata_pelajaran')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-            </div>
-          </li>
-
+          {{-- nis --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">
@@ -73,6 +63,7 @@
             </div>
           </li>
 
+          {{-- jenis kelamin --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">
@@ -94,6 +85,7 @@
             </div>
           </li>
           
+          {{-- agama --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">
@@ -115,6 +107,7 @@
             </div>
           </li>
 
+          {{-- alamat --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">
@@ -129,6 +122,7 @@
             </div>
           </li>
 
+          {{-- tanggal lahir --}}
           <li class="list-group-item">
             <div class="row">
               <div class="col-2">

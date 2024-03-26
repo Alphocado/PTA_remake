@@ -18,16 +18,6 @@
       @enderror
     </div>
 
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control @error('nis') is-invalid @enderror" id="nis" placeholder="Nis" name="nis" value="{{ old('nis', $user->nis) }}" autofocus required>
-      <label for="nis">Nis</label>
-      @error('nis')
-      <div class="invalid-feedback">
-        {{ $message }}
-      </div>
-      @enderror
-    </div>
-
     <div class="mb-3">
       <label for="role">Role</label>
       <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" autofocus required>

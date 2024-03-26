@@ -98,7 +98,6 @@ class GuruController extends Controller
   {
     $rules = $request->validate([
       'nama' => 'required|string|max:255',
-      'nis' => 'required|string|max:255',
       'mata_pelajaran' => 'required',
       'jenis_kelamin' => 'required|in:laki-laki,perempuan',
       'agama' => 'required|in:islam,kristen,katolik,buddha,hindu',
@@ -116,6 +115,7 @@ class GuruController extends Controller
       }
       $rules['image'] = $request->file('image')->store('profile');
     }
+
     if (!empty($rules['pw'])) {
       if (!Hash::check($rules['pw'], $user->password)) {
         return redirect()->back()->with('warning', 'Password lama salah');

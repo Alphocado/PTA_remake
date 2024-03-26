@@ -46,13 +46,13 @@
                 <td class="column-hapus">{{ $s->nis }}</td>
                 <td class="column-hapus">{{ $s->nama_kelas->nama }}</td>
                 <td class="">
-                  <a href="/daftar-siswa/{{ $s->id }}" class="text-decoration-none btn btn-primary fs-6">
+                  <a href="/daftar-siswa/{{ $s->nis }}" class="text-decoration-none btn btn-primary fs-6">
                     <i class="fa-regular fa-circle-info"></i>
                   </a>
-                  <a href="/daftar-siswa/{{ $s->id }}/edit" class="text-decoration-none btn btn-warning fs-6">
+                  <a href="/daftar-siswa/{{ $s->nis }}/edit" class="text-decoration-none btn btn-warning fs-6">
                     <i class="fa-regular fa-pen-to-square"></i>
                   </a>
-                  <form action="/daftar-siswa/{{ $s->id }}" class="d-inline" method="post">
+                  <form action="/daftar-siswa/{{ $s->nis }}" class="d-inline" method="post">
                     @method('delete')
                     @csrf
                     <button class="border-0 text-decoration-none btn btn-danger fs-6" onclick="return confirm('Are you sure?')">

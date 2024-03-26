@@ -35,6 +35,7 @@
           </li>
         </ul>
         <a href="/daftar-siswa" class="btn btn-secondary">Kembali</a>
+        <a href="/daftar-siswa/{{ $siswa->nis }}/edit" class="btn btn-primary">Edit Profile</a>
       </div>
     </div>
   </div>

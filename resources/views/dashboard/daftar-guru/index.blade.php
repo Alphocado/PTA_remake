@@ -26,7 +26,6 @@
       
       <div class="col">
   
-        {{-- list murid --}}
         <div class="table-responsive-md mb-3">
           <table class="table table-striped table-hover table-bordered table-bongkar">
             <thead style="--bs-table-bg: #ECB159;">

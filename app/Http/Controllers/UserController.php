@@ -24,7 +24,7 @@ class UserController extends Controller
   // {
   //   $validateData = $request->validate([
   //     'name' => 'required|max:255',
-  //     'nis' => 'required|size:9|numeric|unique.users',
+  //     'nis' => 'required|max:9|numeric|unique.users',
   //     'email' => 'required|email',
   //     'role' => 'required',
   //     'password' => 'required',
@@ -47,7 +47,7 @@ class UserController extends Controller
   // {
   //   $validateData = $request->validate([
   //     'name' => 'required|max:255',
-  //     'nis' => 'required|size:9|numeric|unique:guru',
+  //     'nis' => 'required|max:9|numeric|unique:guru',
   //     'role' => 'required|in:1,2',
   //   ]);
   //   $guru = [
