@@ -36,7 +36,7 @@ Route::middleware(['check-role2'])->group(function () {
   Route::resource('/daftar-guru', GuruController::class);
   Route::resource('/daftar-kelas', KelasController::class);
   Route::resource('/daftar-mapel', MapelController::class);
-  Route::resource('/daftar-user', UserController::class);
+  // Route::resource('/daftar-user', UserController::class);
 });
 
 

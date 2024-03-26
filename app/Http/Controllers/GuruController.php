@@ -104,6 +104,7 @@ class GuruController extends Controller
       'alamat' => 'required|string|max:255',
       'tgl_lahir' => 'required|date',
       'image' => 'image|file|max:1024',
+      'oldImage' => 'image|file|max:1024',
       'pw' => 'nullable|string',
     ]);
     $user = User::where('nis', $nis)->first();
@@ -114,6 +115,8 @@ class GuruController extends Controller
         Storage::delete($request->oldImage);
       }
       $rules['image'] = $request->file('image')->store('profile');
+    } else {
+      $rules['image'] = $rules['oldImage'];
     }
 
     if (!empty($rules['pw'])) {
@@ -124,26 +127,24 @@ class GuruController extends Controller
     } else {
       $pass = $user->password;
     }
-    try {
-      $guru->update([
-        'nama' => $rules['nama'],
-        'nis' => $rules['nis'],
-        'mata_pelajaran' => $rules['mata_pelajaran'],
-        'jenis_kelamin' => $rules['jenis_kelamin'],
-        'agama' => $rules['agama'],
-        'alamat' => $rules['alamat'],
-        'tgl_lahir' => $rules['tgl_lahir'],
-        'image' => $rules['image']
-      ]);
-      $user->update([
-        'name' => $rules['nama'],
-        'nis' => $rules['nis'],
-        'password' => $pass,
-      ]);
-      return redirect('/daftar-guru')->with('success', 'Edit berhasil');
-    } catch (\Exception $e) {
-      return redirect('/daftar-guru')->with('error', 'Gagal edit, ada yang salah');
-    }
+    // try {
+    $guru->update([
+      'nama' => $rules['nama'],
+      'mata_pelajaran' => $rules['mata_pelajaran'],
+      'jenis_kelamin' => $rules['jenis_kelamin'],
+      'agama' => $rules['agama'],
+      'alamat' => $rules['alamat'],
+      'tgl_lahir' => $rules['tgl_lahir'],
+      'image' => $rules['image']
+    ]);
+    $user->update([
+      'name' => $rules['nama'],
+      'password' => $pass,
+    ]);
+    //   return redirect('/daftar-guru')->with('success', 'Edit berhasil');
+    // } catch (\Exception $e) {
+    //   return redirect('/daftar-guru')->with('error', 'Gagal edit, ada yang salah');
+    // }
   }
 
   /**

@@ -20,7 +20,7 @@ class LoginController extends Controller
   public function authenticate(Request $request)
   {
     $credentials = $request->validate([
-      'nis' => 'required|numeric|unique:guru|unique:users',
+      'nis' => 'required|numeric',
       'password' => 'required'
     ]);
     // dd('ada error');
