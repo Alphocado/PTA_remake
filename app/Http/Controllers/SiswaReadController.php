@@ -38,7 +38,7 @@ class SiswaReadController extends Controller
     return view('dashboard/siswa/show', [
       'title' => 'Siswa',
       'menus' => Menu::select('name', 'slug', 'logo', 'role')->get(),
-      'siswa' => Siswa::select('nama', 'nis', 'kelas', 'jenis_kelamin', 'agama', 'alamat', 'tgl_lahir')->where('id', $id)->first()
+      'siswa' => Siswa::all()->where('id', $id)->first()
     ]);
   }
 }
